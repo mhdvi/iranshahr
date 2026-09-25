@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <title>Iranshahr</title>
 <meta name="description" content="An animated 3D atlas of five thousand years of Iranian history, with a generative score in the Persian modes.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -140,6 +141,39 @@ body.intro #panelBtn{opacity:0;pointer-events:none}
 .intro-hint{font-size:12.5px;color:var(--faint)}
 body.intro #card,body.intro .legend{opacity:0;pointer-events:none;transform:translateY(8px)}
 
+/* language */
+.lang-pick{display:inline-flex;border:1px solid rgba(237,227,209,.22);border-radius:999px;padding:3px;gap:2px}
+.lang-pick button{padding:5px 16px;border-radius:999px;font-size:13px;color:var(--muted);transition:background .2s,color .2s}
+.lang-pick button[data-lang=fa]{font-family:var(--fa)}
+.lang-pick button[aria-pressed=true]{background:var(--gold);color:#1B1305}
+.intro-note{font-size:13px;color:#FFB4A5;max-width:440px}
+.intro-note:empty{display:none}
+.ib.lang{font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--muted)}
+body.lang-en .ib.lang{font-family:var(--fa);font-size:14px}
+body.lang-fa .intro-box{direction:rtl}
+body.lang-fa .intro-eyebrow,body.lang-fa .intro-hint,body.lang-fa .intro-p,body.lang-fa .btn,body.lang-fa .intro-note{font-family:var(--fa);letter-spacing:0}
+body.lang-fa .intro-eyebrow{text-transform:none;font-size:13px}
+body.lang-fa .intro-p{line-height:1.9}
+body.lang-fa #card{direction:rtl;text-align:right}
+body.lang-fa #card,body.lang-fa #eraName,body.lang-fa #beatTitle,body.lang-fa .era-idx,body.lang-fa .era-dates,body.lang-fa .chip,body.lang-fa .beat-year,body.lang-fa .events .ev-y,body.lang-fa .meta dt{font-family:var(--fa);letter-spacing:0;text-transform:none}
+body.lang-fa #eraName{font-weight:700;font-size:25px;line-height:1.4}
+body.lang-fa #beatTitle{font-weight:700;font-size:18px;line-height:1.5}
+body.lang-fa .blurb,body.lang-fa #beatText{line-height:1.9}
+body.lang-fa .era-fa{font-family:var(--display);font-weight:400;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);direction:ltr}
+body.lang-fa .meta dt{font-size:12px;padding-top:1px}
+body.lang-fa .events button{text-align:right;grid-template-columns:auto 10px 1fr}
+body.lang-fa .events .ev-y{min-width:64px}
+body.lang-fa .legend{direction:rtl;font-family:var(--fa)}
+body.lang-fa .legend-head{font-family:var(--fa);letter-spacing:0;font-size:12px}
+body.lang-fa #year,body.lang-fa .ctrl .now,body.lang-fa .seg em{font-family:var(--fa);letter-spacing:0;text-transform:none}
+body.lang-fa #year{font-size:22px;font-weight:700;direction:rtl;text-align:left;margin-right:10px}
+body.lang-fa .ctrl .now{font-size:14.5px}
+body.lang-fa .lbl.sea span,body.lang-fa .lbl.pw span,body.lang-fa .lbl.nb span,body.lang-fa .lbl.cap span,body.lang-fa .lbl.ev span{font-family:var(--fa);letter-spacing:0;text-transform:none}
+body.lang-fa .lbl.sea span{font-size:12px}
+body.lang-fa .lbl.pw span{font-size:14px;font-weight:700}
+body.lang-fa .lbl.nb span{font-size:12px}
+@media (max-width:760px){body.lang-fa .lbl.pw span{font-size:11.5px}body.lang-fa .lbl.nb span{font-size:10.5px}body.lang-fa #year{font-size:15px;margin-right:2px}.ctrl{gap:4px}#year{min-width:0;white-space:nowrap}}
+
 /* dock */
 #dock{position:fixed;left:0;right:0;bottom:0;padding:10px 20px calc(env(safe-area-inset-bottom,0px) + 14px);background:linear-gradient(to top,rgba(10,18,36,.96) 40%,rgba(10,18,36,0));display:flex;flex-direction:column;gap:8px}
 .ctrl{display:flex;align-items:center;gap:6px}
@@ -189,15 +223,15 @@ body.intro #card,body.intro .legend{opacity:0;pointer-events:none;transform:tran
 <header class="brand"><span class="fa">ایرانشهر</span><span class="en">Iranshahr</span></header>
 
 <aside class="legend" aria-label="Map key">
-  <button class="legend-head" id="legendBtn" aria-expanded="true" aria-controls="legendBody" title="Hide the key (K)"><span>Map key</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  <button class="legend-head" id="legendBtn" aria-expanded="true" aria-controls="legendBody" title="Hide the key (K)"><span data-t="legendHead">Map key</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 6 8 10.5 12.5 6" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
   <div class="legend-body" id="legendBody">
-  <div><i class="lg-terr"></i>Territory at the date shown</div>
-  <div><i class="lg-battle"></i>Battle or conquest</div>
-  <div><i class="lg-mon"></i>Monument</div>
-  <div><i class="lg-route"></i>Route or campaign</div>
-  <div><i class="lg-iran"></i>Borders of Iran today</div>
-  <div><i class="lg-lost"></i>Territory lost</div>
-  <small>Borders are approximate. Sources: <a href="https://en.wikipedia.org/wiki/History_of_Iran" target="_blank" rel="noopener">History of Iran</a>, <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener">historical-basemaps</a>, <a href="https://www.naturalearthdata.com" target="_blank" rel="noopener">Natural Earth</a></small>
+  <div><i class="lg-terr"></i><span data-t="legend.0">Territory at the date shown</span></div>
+  <div><i class="lg-battle"></i><span data-t="legend.1">Battle or conquest</span></div>
+  <div><i class="lg-mon"></i><span data-t="legend.2">Monument</span></div>
+  <div><i class="lg-route"></i><span data-t="legend.3">Route or campaign</span></div>
+  <div><i class="lg-iran"></i><span data-t="legend.4">Borders of Iran today</span></div>
+  <div><i class="lg-lost"></i><span data-t="legend.5">Territory lost</span></div>
+  <small><span data-t="legendSrc">Borders are approximate. Sources: </span><a href="https://en.wikipedia.org/wiki/History_of_Iran" target="_blank" rel="noopener">History of Iran</a>, <a href="https://github.com/aourednik/historical-basemaps" target="_blank" rel="noopener">historical-basemaps</a>, <a href="https://www.naturalearthdata.com" target="_blank" rel="noopener">Natural Earth</a></small>
   </div>
 </aside>
 
@@ -212,8 +246,8 @@ body.intro #card,body.intro .legend{opacity:0;pointer-events:none;transform:tran
       <div class="era-map" id="eraMap"></div>
     </div>
     <dl class="meta">
-      <dt>Capital</dt><dd id="eraCap"></dd>
-      <dt>Rulers</dt><dd id="eraRulers"></dd>
+      <dt data-t="capital">Capital</dt><dd id="eraCap"></dd>
+      <dt data-t="rulers">Rulers</dt><dd id="eraRulers"></dd>
     </dl>
     <p class="blurb" id="eraBlurb"></p>
     <div class="beat">
@@ -227,30 +261,33 @@ body.intro #card,body.intro .legend{opacity:0;pointer-events:none;transform:tran
 
 <div id="intro">
   <div class="intro-box">
-    <div class="intro-eyebrow">An animated atlas · c. 3200 BC to today</div>
+    <div class="lang-pick" role="group" aria-label="Language · زبان"><button data-lang="en" aria-pressed="true">English</button><button data-lang="fa" aria-pressed="false" lang="fa">فارسی</button></div>
+    <div class="intro-eyebrow" data-t="introEyebrow">An animated atlas · c. 3200 BC to today</div>
     <div class="intro-fa">ایرانشهر</div>
     <div class="intro-en">Iranshahr</div>
-    <p class="intro-p">Five thousand years of Iran, from Elam to the Islamic Republic: fourteen chapters of empires, monuments and wars, scored live in the Persian modes.</p>
+    <p class="intro-p" data-t="introP">Five thousand years of Iran, from Elam to the Islamic Republic: fourteen chapters of empires, monuments and wars, scored live in the Persian modes.</p>
     <div class="intro-actions">
-      <button class="btn btn-primary" id="beginMusic"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3 1.8v12.4L14 8z"/></svg>Begin with narration and music</button>
-      <button class="btn btn-ghost" id="beginSilent">Explore in silence</button>
+      <button class="btn btn-primary" id="beginMusic"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M3 1.8v12.4L14 8z"/></svg><span data-t="beginMusic">Begin with narration and music</span></button>
+      <button class="btn btn-ghost" id="beginSilent" data-t="beginSilent">Explore in silence</button>
     </div>
-    <div class="intro-hint">Drag to orbit · scroll to zoom · space to pause · arrow keys to step · P and K hide the panels</div>
+    <div class="intro-note" id="voiceNote" role="status"></div>
+    <div class="intro-hint" data-t="introHint">Drag to orbit · scroll to zoom · space to pause · arrow keys to step · P and K hide the panels</div>
   </div>
 </div>
 
 <footer id="dock">
   <div class="ctrl">
-    <button class="ib" id="prev" aria-label="Previous moment"><svg viewBox="0 0 16 16"><path d="M3 2h2v12H3zM14 2v12L6 8z"/></svg></button>
+    <button class="ib" id="prev" aria-label="Previous moment" data-a="prev"><svg viewBox="0 0 16 16"><path d="M3 2h2v12H3zM14 2v12L6 8z"/></svg></button>
     <button class="ib play" id="play" aria-label="Play"><svg viewBox="0 0 16 16" id="playIcon"><path d="M4 2v12l10-6z"/></svg></button>
-    <button class="ib" id="next" aria-label="Next moment"><svg viewBox="0 0 16 16"><path d="M11 2h2v12h-2zM2 2v12l8-6z"/></svg></button>
+    <button class="ib" id="next" aria-label="Next moment" data-a="next"><svg viewBox="0 0 16 16"><path d="M11 2h2v12h-2zM2 2v12l8-6z"/></svg></button>
     <div id="year">500 BC</div>
     <div class="now" id="nowName"></div>
     <div class="spacer"></div>
+    <button class="ib lang" id="langBtn" lang="fa" aria-label="فارسی">فا</button>
     <button class="ib nar off" id="narr" aria-label="Turn narration on"><svg viewBox="0 0 16 16"><path d="M2 2.5h12v8.5H7.5L4 14v-3H2z"/></svg></button>
     <button class="ib snd off" id="sound" aria-label="Turn music on"><svg viewBox="0 0 16 16" id="sndIcon"><path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5l4 6M15 5l-4 6" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></button>
   </div>
-  <div id="track" role="slider" aria-label="Timeline" tabindex="0" aria-valuemin="0" aria-valuemax="13">
+  <div id="track" role="slider" aria-label="Timeline" data-a="timeline" tabindex="0" aria-valuemin="0" aria-valuemax="13">
     <div class="ticks" id="ticks"></div>
     <div class="segs" id="segs"></div>
     <div class="head" id="head"></div>
@@ -504,7 +541,7 @@ const CH=[
 {key:'Qajar',name:'Qajar Iran',fa:'قاجار',start:1796,end:1925,dates:'1796–1925',color:'#7BBF8E',
  cap:'Tehran',rulers:'Agha Mohammad Khan, Fath-Ali Shah, Naser al-Din Shah',
  blurb:'The Qajars made Tehran the capital and lost the Caucasus to Russia in two wars. The Constitutional Revolution of 1905–11 created a parliament, and the discovery of oil drew Britain and Russia deeper into Iranian politics.',
- peak:'Qajar Iran, c. 1800',extent:'Iran plus the South Caucasus. The areas in red were lost: the Caucasus to Russia in 1813 and 1828, and Herat to Afghanistan in 1857.',
+ peak:'Qajar Iran, c. 1800',extent:'Iran plus the South Caucasus. The areas in red were lost: the Caucasus to Russia in 1813 and 1828, and Herat, taken briefly in 1856, was given up in 1857.',
  capitals:[['Tehran',51.39,35.69]],
  terr:'IRAN',
  lost:[[[42.5,41.6],[44.5,42.5],[46.5,42.8],[48.2,42.3],[49.6,40.4],[49.2,39.3],[48.0,38.4],[46.5,38.9],[45.0,39.8],[43.8,40.2],[43.2,41.0]],[[60.5,34.5],[61.3,35.6],[63.5,35.8],[64.0,34.0],[62.5,33.0],[60.8,33.5]]],lostYear:1813,
@@ -572,7 +609,398 @@ CH.forEach((c,i)=>{
   c.bbox=b;
 });
 
-const fy=y=>y<0?`${-y} BC`:(y<1000?`AD ${y}`:`${y}`);
+/* Persian translation. Digits are written in Latin form here and converted for display. */
+const FA={
+ch:[
+ {key:'ایلام',name:'ایلام',dates:'حدود 3200 تا 678 پیش از میلاد',cap:'شوش، انشان',rulers:'اونتاش-ناپیریشا، شوتروک-ناخونته',
+  blurb:'پیش از پارس، دشت‌های خوزستان و کوهستان‌های فارس سرزمین ایلام بودند و شوش کهن‌ترین شهر آن بود. پادشاهان ایلامی دو هزار سال با سومر، بابل و آشور جنگیدند و داد و ستد کردند.',
+  extent:'دشت خوزستان و کوهستان فارس، با مرکزیت شوش و انشان.'},
+ {key:'ماد',name:'شاهنشاهی ماد',dates:'678 تا 550 پیش از میلاد',cap:'هگمتانه (همدان)',rulers:'دیااکو، هووخشتره، ایشتوویگو',
+  blurb:'مادهای ایرانی‌زبان به رهبری دیااکو و جانشینانش یکپارچه شدند. هووخشتره همراه بابل در سال 612 پیش از میلاد آشور را نابود کرد و نخستین شاهنشاهی ایرانی را بنیاد نهاد.',
+  extent:'از رود هالیس در آناتولی تا سراسر شمال ایران؛ حدود 2.8 میلیون کیلومتر مربع.'},
+ {key:'هخامنشی',name:'شاهنشاهی هخامنشی',dates:'550 تا 330 پیش از میلاد',cap:'پاسارگاد، تخت جمشید، شوش، بابل',rulers:'کوروش دوم، کمبوجیه دوم، داریوش یکم، خشایارشا',
+  blurb:'کوروش بزرگ، شاه پارس، فرمانروای مادی خود را برانداخت و بزرگ‌ترین شاهنشاهی تا آن روزگار را ساخت. داریوش یکم آن را به ساتراپی‌هایی بخش کرد که با جاده‌ها، پیک‌ها و سکه‌ای یکسان به هم پیوسته بودند.',
+  extent:'حدود 5.5 میلیون کیلومتر مربع، از تراکیه و مصر تا سند؛ بزرگ‌ترین شاهنشاهی تاریخ تا آن زمان.'},
+ {key:'سلوکی',name:'اسکندر و سلوکیان',dates:'334 تا 247 پیش از میلاد',cap:'بابل، سلوکیه بر دجله',rulers:'اسکندر سوم، سلوکوس یکم، آنتیوخوس یکم',
+  blurb:'اسکندر مقدونی در سه نبرد دولت هخامنشی را برانداخت. پس از مرگ او در بابل در سال 323 پیش از میلاد، سردارش سلوکوس بر ایران فرمان راند و در سراسر فلات شهرهایی یونانی بنیاد نهاد.',
+  extent:'حدود 3.9 میلیون کیلومتر مربع، از آناتولی تا باختر. سرزمین‌های سند در سال 305 پیش از میلاد به موریاها واگذار شد.'},
+ {key:'اشکانی',name:'شاهنشاهی اشکانی',dates:'247 پیش از میلاد تا 224 میلادی',cap:'نسا، صددروازه، تیسفون',rulers:'ارشک یکم، مهرداد یکم، مهرداد دوم، ارد دوم',
+  blurb:'پرنی‌ها، مردمی از استپ‌های شمالی، پارت را گرفتند و شاهنشاهی‌ای ساختند که با کمانداران سواره و سواره‌نظام زره‌پوش نزدیک به پنج سده در برابر روم ایستاد.',
+  extent:'حدود 2.8 میلیون کیلومتر مربع، از فرات تا شرق افغانستان.'},
+ {key:'ساسانی',name:'شاهنشاهی ساسانی',dates:'224 تا 651 میلادی',cap:'تیسفون، استخر، بیشاپور',rulers:'اردشیر یکم، شاپور یکم، خسرو یکم، خسرو دوم',
+  blurb:'اردشیر یکم دودمانی از فارس بنیاد نهاد که آرمان‌های هخامنشی و شاهی زرتشتی را زنده کرد. ساسانیان چهار سده رقیب روم و بیزانس بودند و فرهنگ درباری‌شان جهان اسلامیِ پس از خود را شکل داد.',
+  extent:'حدود 3.5 میلیون کیلومتر مربع، از قفقاز و بین‌النهرین تا جیحون. رنگ تیره‌تر سرزمین‌های وابسته مانند لخمیان را نشان می‌دهد؛ یمن از سال 570 در دست ساسانیان بود.'},
+ {key:'خلافت',name:'خلیفگان و میان‌پرده ایرانی',dates:'651 تا 1037 میلادی',cap:'بغداد، بخارا، شیراز',rulers:'ابومسلم، اسماعیل سامانی، عضدالدوله',
+  blurb:'سپاهیان عرب تا سال 651 به دولت ساسانی پایان دادند. ایران بخشی از خلافت شد، اما دیوانیان ایرانی دستگاه عباسی را می‌گرداندند و دودمان‌های ایرانی چون سامانیان و آل‌بویه زبان و فرمانروایی ایرانی را زنده کردند.',
+  extent:'سامانیان (آبی) در خراسان و ماوراءالنهر؛ آل‌بویه (زرد) در غرب ایران و عراق.'},
+ {key:'سلجوقی',name:'شاهنشاهی سلجوقی',dates:'1037 تا 1194 میلادی',cap:'نیشابور، ری، اصفهان',rulers:'طغرل‌بیگ، آلپ ارسلان، ملکشاه یکم',
+  blurb:'ترکان اوغوز به رهبری خاندان سلجوق ایران را گشودند و به نام خلیفه با عنوان سلطان فرمان راندند؛ زبان دربار و دیوان فارسی بود. وزیرشان نظام‌الملک در سراسر قلمرو مدرسه‌های نظامیه را بنیاد نهاد.',
+  extent:'حدود 3.9 میلیون کیلومتر مربع، از آناتولی و شام تا ماوراءالنهر.'},
+ {key:'مغول',name:'مغولان، ایلخانان و تیموریان',dates:'1219 تا 1501 میلادی',cap:'مراغه، تبریز، سلطانیه، هرات',rulers:'چنگیزخان، هلاکو، غازان، تیمور، شاهرخ',
+  blurb:'یورش‌های مغول در سال‌های 1219 تا 1221 خراسان را ویران کرد. سپس ایلخانان از تبریز و سلطانیه فرمان راندند و یک سده بعد کشورگشایی‌های تیمور به شکوفایی فرهنگی تیموری در هرات و سمرقند انجامید.',
+  extent:'حدود 3.75 میلیون کیلومتر مربع، از آناتولی تا جیحون.'},
+ {key:'صفوی',name:'شاهنشاهی صفوی',dates:'1501 تا 1736 میلادی',cap:'تبریز، قزوین، اصفهان',rulers:'اسماعیل یکم، تهماسب یکم، عباس یکم',
+  blurb:'شاه اسماعیل یکم ایران را دوباره یکپارچه کرد و تشیع دوازده‌امامی را دین رسمی کرد، دینی که هنوز هویت کشور را می‌سازد. شاه عباس یکم سپاه را نوسازی کرد، با عثمانی جنگید و اصفهان را به یکی از شهرهای بزرگ جهان بدل کرد.',
+  extent:'از قفقاز تا قندهار. عراق که در سال 1623 گرفته شد، در سال 1639 به عثمانی بازگشت.'},
+ {key:'افشاری',name:'افشاریان و زندیان',dates:'1736 تا 1796 میلادی',cap:'مشهد، شیراز',rulers:'نادرشاه، کریم‌خان زند',
+  blurb:'پس از گرفته شدن اصفهان به دست افغان‌ها، نادرشاه ایران را دوباره برپا کرد و آن را برای مدتی کوتاه تا دهلی گسترش داد. پس از کشته شدن او، کریم‌خان زند با عنوان وکیل از شیراز بر بیشتر ایران فرمان راند.',
+  extent:'از قفقاز تا سند، با بخارا و خیوه به عنوان دست‌نشانده.'},
+ {key:'قاجار',name:'ایران در دوره قاجار',dates:'1796 تا 1925 میلادی',cap:'تهران',rulers:'آقامحمدخان، فتحعلی‌شاه، ناصرالدین‌شاه',
+  blurb:'قاجارها تهران را پایتخت کردند و در دو جنگ قفقاز را به روسیه باختند. انقلاب مشروطه (1905 تا 1911) مجلس را پدید آورد و کشف نفت بریتانیا و روسیه را بیش از پیش به سیاست ایران کشاند.',
+  extent:'ایران به همراه قفقاز جنوبی. بخش‌های قرمز از دست رفتند: قفقاز در سال‌های 1813 و 1828 به روسیه واگذار شد، و هرات که در سال 1856 برای مدتی کوتاه گرفته شد، در سال 1857 رها شد.'},
+ {key:'پهلوی',name:'ایران در دوره پهلوی',dates:'1925 تا 1979 میلادی',cap:'تهران',rulers:'رضاشاه، محمدرضاشاه',
+  blurb:'رضاشاه دولت را متمرکز و نوسازی کرد تا آنکه متفقین در سال 1941 او را به کناره‌گیری واداشتند. پسرش محمدرضاشاه پس از کودتای 1953 فرمان راند و تا سال 1979 نوسازی شتابان و از بالا را پیش برد.',
+  extent:'حدود 1.65 میلیون کیلومتر مربع، در مرزهایی که بیشترشان تا پایان سده نوزدهم تثبیت شده بودند.'},
+ {key:'جمهوری اسلامی',name:'جمهوری اسلامی ایران',dates:'1979 میلادی تا امروز',cap:'تهران',rulers:'روح‌الله خمینی، علی خامنه‌ای، مجتبی خامنه‌ای',
+  blurb:'انقلاب 1979 پادشاهی را برانداخت و جمهوری اسلامی را به رهبری آیت‌الله خمینی و از 1989 علی خامنه‌ای پدید آورد. حکومت بارها مخالفان را با کشتار سرکوب کرده است، از اعدام زندانیان در 1988 تا کشتارهای دی 1404 (ژانویه 2026). خامنه‌ای در فوریه 2026 در حمله آمریکا و اسرائیل کشته شد.',
+  extent:'1,648,195 کیلومتر مربع، هفدهمین کشور بزرگ جهان، با حدود 90 میلیون نفر جمعیت.'}
+],
+ev:{
+ 'Proto-Elamite writing':['خط آغاز-ایلامی','کاتبان شوش خط آغاز-ایلامی را پدید می‌آورند، یکی از کهن‌ترین نظام‌های نوشتاری جهان که هنوز رمزگشایی نشده است.'],
+ 'Shahr-e Sukhteh':['شهر سوخته','شهر سوخته در دلتای هیرمند لاجورد و فیروزه را در سراسر فلات داد و ستد می‌کند. در میان یافته‌های آن یکی از کهن‌ترین چشم‌های مصنوعی شناخته‌شده است.'],
+ 'Jiroft culture':['تمدن جیرفت','شهرهای عصر مفرغ در دره هلیل‌رود ظرف‌هایی از سنگ کلریت با نقش عقاب، مار و انسان-عقرب می‌تراشند. جیرفت تمدنی مستقل بود و بخشی از ایلام نبود؛ شاید همان سرزمینی که متن‌های بین‌النهرینی مرهشی می‌نامند.'],
+ 'Akkad conquers Susa':['اکد شوش را می‌گیرد','سارگن اکدی و جانشینانش شوش را استانی از نخستین شاهنشاهی بین‌النهرین می‌کنند. با فروپاشی اکد، ایلام شوش را پس می‌گیرد.'],
+ 'Elam sacks Ur':['ایلام اور را ویران می‌کند','سپاهیان ایلام شهر اور را ویران می‌کنند و واپسین پادشاهش، ایبی-سین، را به اسارت می‌برند و به دودمان سوم اور پایان می‌دهند.'],
+ 'Chogha Zanbil':['چغازنبیل','اونتاش-ناپیریشا زیگوراتی برای خدای اینشوشیناک می‌سازد؛ سالم‌ترین زیگورات بیرون از بین‌النهرین.'],
+ 'Shutruk-Nakhunte raids Babylonia':['یورش شوتروک-ناخونته به بابل','پادشاه ایلام شهرهای بابل را غارت می‌کند و ستون قانون‌نامه حمورابی را به شوش می‌برد، جایی که باستان‌شناسان در سال 1901 آن را یافتند.'],
+ 'Iranian peoples arrive':['آمدن ایرانیان','کوچ‌های آغاز عصر آهن مادها، پارس‌ها و پارت‌ها را به فلات ایران می‌آورد.'],
+ 'Ecbatana':['هگمتانه','دیااکو قبایل ماد را متحد می‌کند. به گفته هرودوت پایتخت او هفت حصار تودرتو داشت، هر یک به رنگی، و دو حصار درونی با سیم و زر پوشیده بودند.'],
+ 'Fall of Nineveh':['سقوط نینوا','هووخشتره و بابلیان پایتخت آشور را ویران می‌کنند و به شاهنشاهی آشور پایان می‌دهند.'],
+ 'Battle of the Eclipse':['نبرد خورشیدگرفتگی','خورشیدگرفتگی نبرد مادها و لیدیایی‌ها را متوقف می‌کند و رود هالیس مرز آنها می‌شود.'],
+ 'Cyrus defeats the Medes':['پیروزی کوروش بر مادها','کوروش دوم، شاه پارس، ایشتوویگو فرمانروای ماد را شکست می‌دهد و هگمتانه را می‌گیرد.'],
+ 'Babylon and the Cyrus Cylinder':['بابل و استوانه کوروش','کوروش وارد بابل می‌شود. استوانه کوروش از بازگرداندن مردمان تبعیدی و خدایانشان به سرزمین‌هایشان خبر می‌دهد.'],
+ 'Tomb of Cyrus':['آرامگاه کوروش','در پاسارگاد، آرامگاهی سنگی با بام شیب‌دار بر شش پله و به بلندی حدود 11 متر، پیکر بنیان‌گذار را در خود دارد.'],
+ 'The Behistun inscription':['سنگ‌نبشته بیستون','داریوش یکم داستان به قدرت رسیدنش را بر صخره بیستون به سه زبان پارسی باستان، ایلامی و بابلی می‌نگارد. این سنگ‌نبشته بعدها کلید رمزگشایی خط میخی شد.'],
+ 'Persepolis':['تخت جمشید','داریوش یکم ساخت پارسه را آغاز می‌کند که بعدها تخت جمشید نام گرفت. کاخ آپادانای آن بر 72 ستون به بلندی حدود 20 متر استوار بود.'],
+ 'The Royal Road':['راه شاهی','2,700 کیلومتر از شوش تا سارد با 111 چاپارخانه. پیک‌های شاهی این راه را در حدود نه روز می‌پیمودند.'],
+ 'Marathon':['ماراتن','آتنی‌ها و پلاتایی‌ها نیروی پیاده‌شده پارسی را در دشت ماراتن شکست می‌دهند.'],
+ 'Thermopylae and Salamis':['ترموپیل و سالامیس','خشایارشا از هلسپونت می‌گذرد، تنگه ترموپیل را می‌گشاید و آتن را به آتش می‌کشد، اما ناوگانش را در تنگه‌های سالامیس از دست می‌دهد.'],
+ "Alexander's campaign":['لشکرکشی اسکندر','اسکندر از هلسپونت می‌گذرد و سپاهیان پارسی را در گرانیکوس (334 پیش از میلاد) و ایسوس (333 پیش از میلاد) شکست می‌دهد.'],
+ 'Gaugamela':['گوگمل','اسکندر داریوش سوم را شکست می‌دهد. سپاه هخامنشی از هم می‌پاشد و بابل، شوش و تخت جمشید سقوط می‌کنند.'],
+ 'Persepolis burns':['آتش گرفتن تخت جمشید','تخت جمشید در سال 330 پیش از میلاد به آتش کشیده می‌شود و داریوش سوم به دست ساتراپ خود، بسوس، کشته می‌شود. سیزده ستون آپادانا هنوز برپاست.'],
+ 'To the Indus':['تا رود سند','اسکندر از باختر تا پنجاب پیش می‌رود و سپس بازمی‌گردد. او در سال 323 پیش از میلاد در بابل می‌میرد.'],
+ 'Seleucus takes Babylon':['سلوکوس بابل را می‌گیرد','سلوکوس یکم نیکاتور دولت سلوکی و پایتخت تازه‌ای به نام سلوکیه بر دجله بنیاد می‌نهد.'],
+ 'Nisa':['نسا','پرنی‌ها به رهبری ارشک یکم پارت را می‌گیرند. مهردادکرت، دژ نسا، به یکی از مقرهای شاهی بدل می‌شود.'],
+ 'Mesopotamia taken':['گرفتن بین‌النهرین','مهرداد یکم ماد و بابل را می‌گشاید. تیسفون بر کرانه دجله پایتخت زمستانی می‌شود.'],
+ 'The Silk Road':['جاده ابریشم','فرستادگان هان به پارت می‌رسند. بازرگانان اشکانی بازرگانی ابریشم میان چین و روم را در دست دارند.'],
+ 'Carrhae':['حران','کمانداران سواره و سواره‌نظام زره‌پوش سورنا لژیون‌های کراسوس را نابود می‌کنند و کراسوس کشته می‌شود.'],
+ 'Trajan takes Ctesiphon':['تراژان تیسفون را می‌گیرد','روم سه بار، در سال‌های 116، 165 و 198، پایتخت اشکانی را می‌گیرد اما نمی‌تواند بین‌النهرین را نگه دارد.'],
+ 'Hormozgan':['هرمزدگان','اردشیر یکم از فارس واپسین شاه اشکانی، اردوان چهارم، را می‌کشد و دودمان ساسانی را بنیاد می‌نهد.'],
+ 'Edessa':['ادسا','شاپور یکم امپراتور روم، والرین، را شکست می‌دهد و به اسارت می‌گیرد. این صحنه در نقش رستم بر سنگ کنده شده است.'],
+ 'Avarayr':['آوارایر','مسیحیان ارمنی به رهبری وردان ممیکونیان بر یزدگرد دوم می‌شورند. آنها نبرد را می‌بازند، اما ارمنستان بعدها حق نگه داشتن دین خود را به دست می‌آورد.'],
+ 'Tāq-e Kasrā':['طاق کسری','خسرو یکم (531 تا 579) مالیات و سپاه را اصلاح می‌کند. تالار بزرگ تیسفون معمولاً به او نسبت داده می‌شود؛ طاق آن با بلندی حدود 37 متر بزرگ‌ترین طاق آجری یک‌دهانه‌ای است که تاکنون ساخته شده.'],
+ 'Siege of Constantinople':['محاصره قسطنطنیه','در واپسین جنگ بزرگ با بیزانس (602 تا 628) سپاهیان ایران اورشلیم و مصر را می‌گیرند و به قسطنطنیه می‌رسند، اما همه را به هراکلیوس می‌بازند.'],
+ 'al-Qādisiyyah':['قادسیه','سپاهیان مسلمان عرب ارتش ساسانی را شکست می‌دهند و تیسفون سال بعد سقوط می‌کند.'],
+ 'Death of Yazdegerd III':['مرگ یزدگرد سوم','پس از شکست نهاوند در سال 642، واپسین شاه ساسانی به شرق می‌گریزد و در نزدیکی مرو کشته می‌شود.'],
+ 'Battle of the Zab':['نبرد زاب','سپاه خراسانی ابومسلم با پرچم‌های سیاه امویان را برمی‌اندازد. عباسیان با وزیران و آیین‌های درباری ایرانی فرمان می‌رانند.'],
+ 'Talas':['تالاس','سپاهی عباسی ارتش چین تانگ را در آسیای میانه شکست می‌دهد. بنا بر روایت، اسیران چینی کاغذسازی را به سمرقند آوردند.'],
+ 'Baghdad founded':['بنیاد بغداد','منصور، خلیفه عباسی، شهر گرد خود را در 35 کیلومتری پایتخت کهن ساسانی، تیسفون، می‌سازد.'],
+ 'Babak Khorramdin':['بابک خرمدین','بابک از دژ بذ در آذربایجان بیست سال بر خلافت می‌شورد.'],
+ 'Samanid Mausoleum':['آرامگاه سامانیان','بخارا، پایتخت سامانیان، زادگاه شعر فارسی نو می‌شود. آرامگاه این دودمان سراسر از آجر پخته با نقش‌های هندسی ساخته شده است.'],
+ 'Buyids in Baghdad':['آل‌بویه در بغداد','آل‌بویه، از دیلم در کرانه خزر، بغداد را می‌گیرند. خلیفه عنوانش را نگه می‌دارد اما قدرتش را از دست می‌دهد.'],
+ 'The Shahnameh':['شاهنامه','فردوسی در توس شاهنامه را با حدود 50,000 بیت از اسطوره و تاریخ ایران به پایان می‌رساند.'],
+ 'The Canon of Medicine':['قانون در طب','ابن‌سینا کتاب قانون را به پایان می‌برد؛ کتاب درسی پزشکی در اروپا و جهان اسلام برای شش سده. آرامگاه او در همدان است.'],
+ 'Dandanaqan':['دندانقان','ترکان سلجوقی غزنویان را شکست می‌دهند و خراسان را می‌گیرند. طغرل‌بیگ در سال 1055 وارد بغداد می‌شود.'],
+ 'Manzikert':['ملازگرد','آلپ ارسلان امپراتور بیزانس، رومانوس چهارم، را شکست می‌دهد و اسیر می‌کند. آناتولی به روی کوچ ترکان گشوده می‌شود.'],
+ 'The Jalali calendar':['تقویم جلالی','عمر خیام و دیگر ستاره‌شناسان در اصفهان تقویمی خورشیدی می‌سازند که از تقویم گریگوری دقیق‌تر است. تقویم امروز ایران از آن برآمده است.'],
+ 'Jameh Mosque of Isfahan':['مسجد جامع اصفهان','نظام‌الملک گنبد بزرگ جنوبی مسجد را می‌سازد. حیاط چهارایوانی آن الگوی مسجدهای ایرانی شد.'],
+ 'Alamut':['الموت','حسن صباح دژ الموت را می‌گیرد و دولت اسماعیلیان نزاری را بنیاد می‌نهد که دژهای کوهستانی‌اش را تا رسیدن مغولان در سال 1256 نگه می‌دارد.'],
+ 'The Mongol invasion':['یورش مغول','چنگیزخان شاهنشاهی خوارزمشاهی را نابود می‌کند (1219 تا 1221). نیشابور، مرو و هرات ویران می‌شوند و بخش بزرگی از مردم خراسان از میان می‌روند.'],
+ 'Sack of Baghdad':['سقوط بغداد','هلاکو به خلافت عباسی پایان می‌دهد. ایلخانان از مراغه و سپس تبریز بر ایران فرمان می‌رانند.'],
+ 'Maragheh observatory':['رصدخانه مراغه','هلاکو هزینه رصدخانه خواجه نصیرالدین توسی را در مراغه می‌پردازد، پیشرفته‌ترین رصدخانه روزگار خود. زیج‌های آن سده‌ها به کار می‌رفت.'],
+ 'Ghazan Khan':['غازان‌خان','غازان مسلمان می‌شود. وزیرش رشیدالدین در تبریز یکی از نخستین تاریخ‌های جهان را می‌نویسد.'],
+ 'Dome of Soltaniyeh':['گنبد سلطانیه','آرامگاه الجایتو یکی از بزرگ‌ترین گنبدهای آجری جهان را با بلندی حدود 50 متر دارد.'],
+ 'Timur':['تیمور','تیمور از سمرقند ایران را می‌گشاید و در سال 1387 اصفهان را قتل‌عام می‌کند. در دوران جانشینانش هرات کانون نگارگری و شعر می‌شود.'],
+ 'Hafez':['حافظ','حافظ شیرازی، استاد غزل فارسی، درمی‌گذرد. ایرانیان هنوز دیوانش را برای فال می‌گشایند.'],
+ 'Ismail I':['اسماعیل یکم','اسماعیل چهارده‌ساله تبریز را می‌گیرد و تشیع دوازده‌امامی را دین رسمی اعلام می‌کند.'],
+ 'Chaldiran':['چالدران','توپ و تفنگ عثمانی سواران قزلباش اسماعیل را شکست می‌دهد. تبریز بی‌دفاع می‌ماند و پایتخت بعدها به شرق منتقل می‌شود.'],
+ 'Naqsh-e Jahan Square':['میدان نقش جهان','شاه عباس یکم در سال 1598 پایتخت را به اصفهان می‌برد. مسجد شاه بر میدان بزرگ آن با کاشی هفت‌رنگ پوشیده شده است.'],
+ 'Capture of Hormuz':['گرفتن هرمز','نیروهای ایرانی و انگلیسی جزیره هرمز را از پرتغالی‌ها می‌گیرند.'],
+ 'Treaty of Zuhab':['پیمان ذهاب','صلح با عثمانی در قصر شیرین. عراق در دست عثمانی می‌ماند و مرز غربی ایران کمابیش همان‌جا که امروز است تثبیت می‌شود.'],
+ 'Gulnabad':['گلناباد','شورشیان افغان هوتکی سپاه صفوی را شکست می‌دهند و اصفهان را با گرسنگی به تسلیم وامی‌دارند.'],
+ 'Damghan':['دامغان','نادر، سردار تهماسب دوم صفوی، اشرف افغان را شکست می‌دهد و به زودی اصفهان را پس می‌گیرد.'],
+ 'Nader Shah':['نادرشاه','نادر، سرداری که افغان‌ها و عثمانی‌ها را بیرون راند، در دشت مغان تاج‌گذاری می‌کند.'],
+ 'Karnal':['کرنال','نادر سپاه گورکانی هند را شکست می‌دهد، دهلی را غارت می‌کند و تخت طاووس و الماس کوه نور را با خود می‌برد.'],
+ 'Death of Nader':['مرگ نادر','نادر در قوچان به دست افسران خودش کشته می‌شود و شاهنشاهی‌اش از هم می‌پاشد.'],
+ 'Arg of Karim Khan':['ارگ کریم‌خان','کریم‌خان زند با عنوان «وکیل‌الرعایا» و نه شاه از شیراز فرمان می‌راند. یکی از برج‌های ارگ او آشکارا کج است.'],
+ 'Agha Mohammad Khan':['آقامحمدخان','بنیان‌گذار دودمان قاجار تاج‌گذاری می‌کند. تهران، که تا آن زمان شهری کوچک بود، پایتخت می‌شود.'],
+ 'Wars with Russia':['جنگ‌های ایران و روس','نخستین جنگ با روسیه (1804 تا 1813) با پیمان گلستان پایان می‌یابد. ایران گرجستان، داغستان و بیشتر خاک جمهوری آذربایجان کنونی را واگذار می‌کند.'],
+ 'Treaty of Turkmenchay':['پیمان ترکمانچای','پس از جنگ دوم، ایران خان‌نشین‌های ایروان و نخجوان را واگذار می‌کند و امتیازهای گسترده بازرگانی و حقوقی به روسیه می‌دهد.'],
+ 'Dar ul-Funun':['دارالفنون','امیرکبیر، صدراعظم، نخستین مدرسه نوین ایران را در تهران بنیاد می‌نهد. او سال بعد به فرمان شاه کشته می‌شود.'],
+ 'Golestan Palace':['کاخ گلستان','شمس‌العماره ناصرالدین‌شاه، که در سال 1867 به پایان رسید، بلندترین بنای تهران بود.'],
+ 'Tobacco protest':['جنبش تنباکو','تحریمی سراسری شاه را وادار می‌کند امتیاز انحصار تنباکو را که به شرکتی بریتانیایی داده بود لغو کند.'],
+ 'Constitutional Revolution':['انقلاب مشروطه','اعتراض‌ها شاه را به پذیرش قانون اساسی و نخستین مجلس ایران وامی‌دارد.'],
+ 'Oil at Masjed Soleyman':['نفت در مسجدسلیمان','نخستین چاه نفت خاورمیانه در مسجدسلیمان به نفت می‌رسد و به تأسیس شرکت نفت ایران و انگلیس می‌انجامد.'],
+ 'Reza Shah':['رضاشاه','مجلس واپسین شاه قاجار را برکنار می‌کند و رضاخان را به پادشاهی می‌نشاند. او ارتشی سراسری، راه‌آهن و دانشگاه می‌سازد.'],
+ 'Persia becomes Iran':['از «پرشیا» تا «ایران»','دولت از کشورهای خارجی می‌خواهد به جای «پرشیا» نام خود کشور، ایران، را به کار ببرند.'],
+ 'Anglo-Soviet invasion':['حمله بریتانیا و شوروی','بریتانیا و شوروی برای در اختیار گرفتن نفت و راه رساندن تدارکات به ایران حمله می‌کنند. رضاشاه به سود پسرش محمدرضا کناره می‌گیرد.'],
+ 'Mosaddegh and the 1953 coup':['مصدق و کودتای 28 مرداد','نخست‌وزیر محمد مصدق در سال 1951 صنعت نفت را ملی می‌کند. کودتایی با پشتیبانی آمریکا و بریتانیا در سال 1953 او را برکنار می‌کند.'],
+ 'The White Revolution':['انقلاب سفید','برنامه اصلاحات شاه اصلاحات ارضی و حق رأی زنان را به همراه دارد. مخالفت به رهبری روح‌الله خمینی به تبعید او در سال 1964 می‌انجامد.'],
+ 'Shahyad Tower':['برج شهیاد','به مناسبت جشن‌های 2,500 ساله شاهنشاهی ساخته شد و پس از 1979 برج آزادی نام گرفت.'],
+ 'The revolution':['انقلاب','اعتراض‌های گسترده به پادشاهی پایان می‌دهد. همه‌پرسی جمهوری اسلامی را به رهبری آیت‌الله روح‌الله خمینی پدید می‌آورد.'],
+ 'Iran–Iraq War':['جنگ ایران و عراق','عراق به خوزستان حمله می‌کند. جنگ هشت سال، تا 1988، طول می‌کشد و صدها هزار نفر کشته می‌شوند.'],
+ 'Ceasefire':['آتش‌بس','ایران قطعنامه 598 شورای امنیت سازمان ملل را می‌پذیرد. جنگ بی‌هیچ تغییری در مرز پایان می‌یابد.'],
+ 'Mass executions of political prisoners':['اعدام‌های دسته‌جمعی زندانیان سیاسی','پس از آتش‌بس، هیئت‌هایی مخفی فرمان اعدام هزاران زندانی سیاسی را می‌دهند که بیشترشان از اعضای سازمان مجاهدین خلق و گروه‌های چپ بودند. برآوردها از حدود 2,800 تا بیش از 5,000 نفر است.'],
+ 'The Khamenei era':['دوران خامنه‌ای','علی خامنه‌ای رهبر می‌شود. رئیس‌جمهورهای پس از آن رفسنجانی، خاتمی، احمدی‌نژاد، روحانی، رئیسی و از 2024 پزشکیان بوده‌اند.'],
+ 'The chain murders':['قتل‌های زنجیره‌ای','نویسندگان و دگراندیشان به دست مأموران وزارت اطلاعات کشته می‌شوند؛ این وزارتخانه در ژانویه 1999 نقش خود را می‌پذیرد.'],
+ 'Milad Tower':['برج میلاد','برج مخابراتی 435 متری تهران، از بلندترین برج‌های جهان.'],
+ 'The Green Movement':['جنبش سبز','میلیون‌ها نفر به انتخاب دوباره و مورد مناقشه محمود احمدی‌نژاد اعتراض می‌کنند. نیروهای امنیتی اعتراض‌ها را سرکوب می‌کنند؛ ده‌ها نفر، از جمله ندا آقاسلطان، کشته و هزاران نفر بازداشت می‌شوند.'],
+ 'Nuclear agreement':['توافق هسته‌ای','ایران و شش قدرت جهانی بر سر برجام توافق می‌کنند که برنامه هسته‌ای ایران را در برابر کاهش تحریم‌ها محدود می‌کند. آمریکا در سال 2018 از آن خارج می‌شود.'],
+ 'Bloody November':['آبان خونین','اعتراض‌ها به گرانی بنزین در میان قطع سراسری اینترنت با شلیک گلوله پاسخ داده می‌شود. عفو بین‌الملل دست‌کم 321 کشته را تأیید کرد و رویترز از حدود 1,500 کشته خبر داد.'],
+ 'Flight 752':['پرواز 752','سپاه پاسداران هواپیمای پرواز 752 هواپیمایی بین‌المللی اوکراین را پس از برخاستن از تهران سرنگون می‌کند و هر 176 سرنشین آن کشته می‌شوند. مقام‌ها سه روز آن را انکار می‌کنند.'],
+ 'Woman, Life, Freedom':['زن، زندگی، آزادی','مهسا (ژینا) امینی، 22 ساله، در بازداشت گشت ارشاد جان می‌بازد. اعتراض‌های سراسری در پی می‌آید؛ سازمان حقوق بشر ایران دست‌کم 551 معترض کشته، از جمله 68 کودک، را ثبت کرد و چند معترض اعدام شدند.'],
+ 'The Twelve-Day War':['جنگ دوازده‌روزه','اسرائیل از 13 ژوئن تأسیسات هسته‌ای و فرماندهان نظامی ایران را هدف می‌گیرد و ایران به اسرائیل موشک شلیک می‌کند. آمریکا در 22 ژوئن فردو، نطنز و اصفهان را بمباران می‌کند؛ آتش‌بس در 24 ژوئن برقرار می‌شود.'],
+ 'The January 2026 massacres':['کشتارهای دی 1404','اعتراض‌هایی که از 30 دسامبر 2025 آغاز شد با تیراندازی گسترده پاسخ داده می‌شود، به‌ویژه در 8 و 9 ژانویه. گروه حقوق بشری هرانا نام 7,007 کشته را ثبت کرده است؛ دولت 3,117 کشته را می‌پذیرد و برآوردهای دیگر از 30,000 فراتر می‌رود. بر پایه گزارش‌ها، خامنه‌ای فرمان شلیک گلوله جنگی را داده بود.'],
+ 'War with the US and Israel; Khamenei killed':['جنگ با آمریکا و اسرائیل؛ کشته شدن خامنه‌ای','در 28 فوریه آمریکا و اسرائیل در سراسر ایران حمله می‌کنند. رهبر جمهوری اسلامی، علی خامنه‌ای، همراه با فرماندهان ارشد در تهران کشته می‌شود؛ ایران مرگ او را در 1 مارس تأیید می‌کند.'],
+ 'A new Supreme Leader':['رهبر تازه','مجلس خبرگان در 9 مارس مجتبی خامنه‌ای، پسر رهبر پیشین، را به رهبری برمی‌گزیند. آتش‌بس در 7 و 8 آوریل برقرار می‌شود، اما تنش بر سر تنگه هرمز ادامه دارد.']
+},
+notes:{
+ 'Susa and the Susiana plain; the Burnt City in Sistan':'شوش و دشت شوشان؛ شهر سوخته در سیستان',
+ 'Jiroft culture flourishes in the Halil Rud valley':'شکوفایی تمدن جیرفت در دره هلیل‌رود',
+ 'The Awan kings rule Susiana and highland Anshan':'پادشاهان اوان بر شوشان و کوهستان انشان فرمان می‌رانند',
+ 'Akkad conquers Susa; the Oxus civilisation rises in the east':'اکد شوش را می‌گیرد؛ تمدن جیحون در شرق برمی‌خیزد',
+ 'Akkad collapses; Puzur-Inshushinak restores Elam':'اکد فرومی‌پاشد؛ پوزور-اینشوشیناک ایلام را دوباره برپا می‌کند',
+ 'The Third Dynasty of Ur rules Susa':'دودمان سوم اور بر شوش فرمان می‌راند',
+ 'Elam sacks Ur and retakes Susa':'ایلام اور را ویران می‌کند و شوش را پس می‌گیرد',
+ 'Old Babylonian kingdom; the Oxus civilisation fades':'پادشاهی بابل کهن؛ تمدن جیحون رو به افول می‌رود',
+ 'Shutruk-Nakhunte raids Babylonia and carries off the stele of Hammurabi':'شوتروک-ناخونته به بابل یورش می‌برد و ستون حمورابی را با خود می‌برد',
+ 'Middle Elamite kingdom':'پادشاهی ایلام میانه',
+ 'Nebuchadnezzar I of Babylon sacks Susa':'نبوکدنصر یکم بابلی شوش را غارت می‌کند',
+ 'Neo-Elamite kingdom beside the Neo-Assyrian empire':'پادشاهی ایلام نو در کنار شاهنشاهی آشور نو',
+ 'Deioces unites the Median tribes around Ecbatana':'دیااکو قبایل ماد را پیرامون هگمتانه متحد می‌کند',
+ 'Ashurbanipal of Assyria destroys Susa; the Persian kings of Anshan hold Fars':'آشوربانیپال آشوری شوش را ویران می‌کند؛ شاهان پارسی انشان فارس را در دست دارند',
+ 'Cyaxares absorbs Mannea; Persis becomes a vassal':'هووخشتره مانا را به قلمرو خود می‌افزاید؛ پارس دست‌نشانده می‌شود',
+ 'Assyria destroyed: Media takes northern Mesopotamia':'نابودی آشور: ماد شمال بین‌النهرین را می‌گیرد',
+ 'Urartu, Hyrcania and Parthia annexed':'اورارتو، گرگان و پارت ضمیمه می‌شوند',
+ 'Peace with Lydia fixes the border on the Halys':'صلح با لیدیه مرز را بر رود هالیس تثبیت می‌کند',
+ 'Cyrus of Persis rebels against his Median overlord Astyages':'کوروش پارسی بر ایشتوویگو، فرمانروای مادی‌اش، می‌شورد',
+ 'Cyrus takes Ecbatana and the Median empire':'کوروش هگمتانه و شاهنشاهی ماد را می‌گیرد',
+ 'Lydia and Asia Minor conquered':'گشودن لیدیه و آسیای صغیر',
+ 'Cyrus conquers the east, from Parthia to Bactria and Gandhara':'کوروش شرق را از پارت تا باختر و گندارا می‌گشاید',
+ 'Babylon falls, and its empire passes to Cyrus':'بابل سقوط می‌کند و شاهنشاهی‌اش به کوروش می‌رسد',
+ 'Cambyses conquers Egypt':'کمبوجیه مصر را می‌گشاید',
+ 'Darius I reaches the Indus and Maka':'داریوش یکم به سند و مکا می‌رسد',
+ 'Darius crosses into Europe: Thrace':'داریوش به اروپا می‌رود: تراکیه',
+ 'Macedon becomes a vassal':'مقدونیه دست‌نشانده می‌شود',
+ 'The European lands are lost after Plataea':'سرزمین‌های اروپایی پس از پلاته از دست می‌روند',
+ 'Egypt regains its independence':'مصر استقلالش را بازمی‌یابد',
+ 'Artaxerxes III reconquers Egypt':'اردشیر سوم مصر را دوباره می‌گشاید',
+ 'Alexander leads Macedon and the Greek League into Asia':'اسکندر مقدونیه و اتحادیه یونانی را به آسیا می‌برد',
+ 'Asia Minor after the Granicus':'آسیای صغیر پس از نبرد گرانیکوس',
+ 'The Levant and Egypt':'شام و مصر',
+ 'Mesopotamia after Gaugamela: the Achaemenid army breaks':'بین‌النهرین پس از گوگمل: سپاه هخامنشی از هم می‌پاشد',
+ 'Darius III is killed; Bessus holds out in the east as Artaxerxes V':'داریوش سوم کشته می‌شود؛ بسوس با نام اردشیر پنجم در شرق پایداری می‌کند',
+ 'Bessus is captured; Aria, Bactria and Sogdia conquered':'بسوس اسیر می‌شود؛ هرات، باختر و سغد گشوده می‌شوند',
+ 'The Indus':'رود سند',
+ 'Alexander dies in Babylon; Perdiccas holds the empire as regent':'اسکندر در بابل می‌میرد؛ پردیکاس به نیابت شاهنشاهی را نگه می‌دارد',
+ 'Partition of Triparadisus: the generals take the satrapies':'تقسیم تریپارادیسوس: سرداران ساتراپی‌ها را میان خود بخش می‌کنند',
+ 'Antigonus defeats Eumenes and drives Seleucus out of Babylon':'آنتیگونوس اومنس را شکست می‌دهد و سلوکوس را از بابل می‌راند',
+ 'Seleucus retakes Babylon; Ptolemy takes Coele-Syria':'سلوکوس بابل را پس می‌گیرد؛ بطلمیوس سوریه جنوبی را می‌گیرد',
+ 'Seleucus takes the east; Arachosia and the Indus are ceded to the Mauryas':'سلوکوس شرق را می‌گیرد؛ رخج و سند به موریاها واگذار می‌شوند',
+ 'Ipsus: Antigonus is killed and his lands divided':'ایپسوس: آنتیگونوس کشته و سرزمین‌هایش بخش می‌شود',
+ 'Corupedium: Seleucus takes Asia Minor':'کوروپدیوم: سلوکوس آسیای صغیر را می‌گیرد',
+ 'Bactria breaks away under Diodotus':'باختر به رهبری دیودوتوس جدا می‌شود',
+ 'Arsaces I seizes Parthia from the Seleucids':'ارشک یکم پارت را از سلوکیان می‌گیرد',
+ 'Hyrcania annexed':'گرگان ضمیمه می‌شود',
+ 'Panium: the Seleucids take Coele-Syria from Ptolemaic Egypt':'پانیوم: سلوکیان سوریه جنوبی را از مصر بطلمیوسی می‌گیرند',
+ 'Peace of Apamea: the Seleucids give up Asia Minor to Rome':'صلح آپامئا: سلوکیان آسیای صغیر را به روم وامی‌گذارند',
+ 'Mithridates I conquers Media':'مهرداد یکم ماد را می‌گشاید',
+ 'Babylonia taken; Elymais and Persis submit':'بابل گشوده می‌شود؛ الیمائیس و پارس سر فرود می‌آورند',
+ 'Mithridates II: Merv, Sakastan and the Euphrates':'مهرداد دوم: مرو، سکستان و فرات',
+ 'Pompey ends the Seleucid kingdom; Rome now borders Parthia':'پمپه به پادشاهی سلوکی پایان می‌دهد؛ روم اکنون همسایه پارت است',
+ 'Rome annexes Egypt':'روم مصر را ضمیمه می‌کند',
+ 'The Indo-Parthian kingdom breaks away in the east':'پادشاهی هندو-پارتی در شرق جدا می‌شود',
+ 'Trajan annexes Mesopotamia and Armenia':'تراژان بین‌النهرین و ارمنستان را ضمیمه می‌کند',
+ 'Hadrian gives Mesopotamia back':'هادریان بین‌النهرین را پس می‌دهد',
+ 'Septimius Severus annexes northern Mesopotamia':'سپتیمیوس سوروس شمال بین‌النهرین را ضمیمه می‌کند',
+ 'Ardashir I defeats the last Parthian king':'اردشیر یکم واپسین شاه اشکانی را شکست می‌دهد',
+ 'Khorasan, Merv, Sistan and the Gulf coast submit':'خراسان، مرو، سیستان و کرانه‌های خلیج فارس سر فرود می‌آورند',
+ 'Shapur I: Armenia, Georgia, Albania and Kushanshahr':'شاپور یکم: ارمنستان، گرجستان، آلبانیا و کوشانشهر',
+ 'Treaty of Nisibis: Rome takes the lands beyond the Tigris and Armenia':'پیمان نصیبین: روم سرزمین‌های آن سوی دجله و ارمنستان را می‌گیرد',
+ 'After Julian’s defeat: Nisibis, the Tigris lands and Armenia return':'پس از شکست یولیانوس: نصیبین، سرزمین‌های دجله و ارمنستان بازمی‌گردند',
+ 'The Kidarites take Bactria and Gandhara':'کیداریان باختر و گندارا را می‌گیرند',
+ 'Armenia partitioned: western Armenia to Rome':'تقسیم ارمنستان: ارمنستان غربی به روم می‌رسد',
+ 'The Hephthalites destroyed; Bactria regained':'هپتالیان نابود می‌شوند؛ باختر بازپس گرفته می‌شود',
+ 'Yemen conquered':'یمن گشوده می‌شود',
+ 'War with Byzantium: upper Mesopotamia and Armenia overrun':'جنگ با بیزانس: شمال بین‌النهرین و ارمنستان گرفته می‌شود',
+ 'Syria and Jerusalem taken':'گرفتن سوریه و اورشلیم',
+ 'Egypt taken':'گرفتن مصر',
+ 'Peace with Heraclius restores the old frontier':'صلح با هراکلیوس مرز پیشین را بازمی‌گرداند',
+ 'Mesopotamia lost after al-Qadisiyyah':'از دست رفتن بین‌النهرین پس از قادسیه',
+ 'After Nahavand only the south and east remain':'پس از نهاوند تنها جنوب و شرق باقی می‌ماند',
+ 'Fars, Kerman and Sistan fall':'سقوط فارس، کرمان و سیستان',
+ 'The Sasanian state ends; Tabaristan stays under its own princes':'پایان دولت ساسانی؛ طبرستان در دست فرمانروایان بومی خود می‌ماند',
+ 'The Rashidun caliphate; Tabaristan and Daylam stay independent':'خلافت راشدین؛ طبرستان و دیلم مستقل می‌مانند',
+ 'Muawiya founds the Umayyad caliphate':'معاویه خلافت اموی را بنیاد می‌نهد',
+ 'Umayyad conquest of Transoxiana and Khwarazm':'گشودن ماوراءالنهر و خوارزم به دست امویان',
+ 'The Abbasids annex Tabaristan':'عباسیان طبرستان را ضمیمه می‌کنند',
+ 'Babak’s Khurramites rise in Azerbaijan':'خرمدینان بابک در آذربایجان برمی‌خیزند',
+ 'Tahirid governors in Khorasan; Samanids in Transoxiana':'فرمانروایان طاهری در خراسان؛ سامانیان در ماوراءالنهر',
+ 'Babak’s fortress of Bazz falls':'سقوط دژ بذ، پایگاه بابک',
+ 'The Saffarids rise in Sistan':'صفاریان در سیستان برمی‌خیزند',
+ 'The Alavids take Tabaristan':'علویان طبرستان را می‌گیرند',
+ 'The Saffarids overthrow the Tahirids':'صفاریان طاهریان را برمی‌اندازند',
+ 'Saffarids at their height: Fars, Kerman and Tokharistan':'صفاریان در اوج: فارس، کرمان و تخارستان',
+ 'The Sajids govern Azerbaijan':'ساجیان بر آذربایجان فرمان می‌رانند',
+ 'The Samanids defeat the Saffarids and take Khorasan and Tabaristan':'سامانیان صفاریان را شکست می‌دهند و خراسان و طبرستان را می‌گیرند',
+ 'The Saffarids driven out of Sistan; the Alavids back in Tabaristan':'صفاریان از سیستان رانده می‌شوند؛ علویان به طبرستان بازمی‌گردند',
+ 'Mardavij the Ziyarid rules northern and central Iran':'مرداویج زیاری بر شمال و مرکز ایران فرمان می‌راند',
+ 'The Buyids take Fars':'آل‌بویه فارس را می‌گیرند',
+ 'The Buyids take Baghdad; the caliph is their guest':'آل‌بویه بغداد را می‌گیرند؛ خلیفه مهمان آنهاست',
+ 'The Buyids take Kerman and Oman':'آل‌بویه کرمان و عمان را می‌گیرند',
+ 'Sebuktigin founds the Ghaznavid state':'سبکتگین دولت غزنوی را بنیاد می‌نهد',
+ 'Adud al-Dawla: the Buyids at their height':'عضدالدوله: آل‌بویه در اوج',
+ 'The Samanid state is partitioned along the Oxus':'دولت سامانی در امتداد جیحون بخش می‌شود',
+ 'Mahmud of Ghazni ends the Saffarids':'محمود غزنوی به صفاریان پایان می‌دهد',
+ 'Mahmud annexes Khwarazm':'محمود خوارزم را ضمیمه می‌کند',
+ 'Mahmud takes Rey from the Buyids':'محمود ری را از آل‌بویه می‌گیرد',
+ 'The Seljuk Turks take Merv and Nishapur':'ترکان سلجوقی مرو و نیشابور را می‌گیرند',
+ 'After Dandanaqan the Seljuks hold Khorasan':'پس از دندانقان خراسان در دست سلجوقیان است',
+ 'Tughril Beg makes Isfahan his capital':'طغرل‌بیگ اصفهان را پایتخت می‌کند',
+ 'Tughril Beg enters Baghdad':'طغرل‌بیگ وارد بغداد می‌شود',
+ 'Manzikert: the road into Anatolia opens':'ملازگرد: راه آناتولی گشوده می‌شود',
+ 'Malik-Shah: from Syria and Anatolia to Transoxiana':'ملکشاه: از شام و آناتولی تا ماوراءالنهر',
+ 'Qatwan: Transoxiana lost to the Qara Khitai':'قطوان: ماوراءالنهر به قراختاییان واگذار می‌شود',
+ 'Sanjar dies; Seljuk power fragments':'مرگ سنجر؛ قدرت سلجوقی از هم می‌پاشد',
+ 'The Khwarazmshah Tekish ends Seljuk rule in Iran':'تکش خوارزمشاه به فرمانروایی سلجوقیان در ایران پایان می‌دهد',
+ 'Muhammad II Khwarazmshah at his height':'محمد خوارزمشاه در اوج',
+ 'The Khwarazmian Empire on the eve of the Mongol invasion':'شاهنشاهی خوارزمشاهی در آستانه یورش مغول',
+ 'The Mongols destroy the Khwarazmian east':'مغولان شرق خوارزمشاهی را نابود می‌کنند',
+ 'The Mongols overrun western Iran':'مغولان غرب ایران را فرامی‌گیرند',
+ 'Hulagu founds the Ilkhanate and takes Alamut':'هلاکو ایلخانی را بنیاد می‌نهد و الموت را می‌گیرد',
+ 'Baghdad sacked: the Ilkhanate from Anatolia to the Oxus':'غارت بغداد: ایلخانی از آناتولی تا جیحون',
+ 'The Ilkhanate collapses into regional states':'ایلخانی به دولت‌های محلی فرومی‌پاشد',
+ 'The Muzaffarids take Fars and Isfahan; the Jalayirids take Tabriz':'آل‌مظفر فارس و اصفهان را می‌گیرند؛ جلایریان تبریز را می‌گیرند',
+ 'Timur conquers Khorasan':'تیمور خراسان را می‌گشاید',
+ 'Timur takes Fars and Baghdad':'تیمور فارس و بغداد را می‌گیرد',
+ 'The Qara Qoyunlu take Azerbaijan and Iraq':'قراقویونلوها آذربایجان و عراق را می‌گیرند',
+ 'Jahan Shah: the Qara Qoyunlu take central Iran':'جهانشاه: قراقویونلوها مرکز ایران را می‌گیرند',
+ 'The Aq Qoyunlu destroy the Qara Qoyunlu':'آق‌قویونلوها قراقویونلوها را نابود می‌کنند',
+ 'The Uzbeks take Transoxiana':'ازبکان ماوراءالنهر را می‌گیرند',
+ 'Ismail I takes Tabriz':'اسماعیل یکم تبریز را می‌گیرد',
+ 'Western and central Iran won from the Aq Qoyunlu':'غرب و مرکز ایران از آق‌قویونلوها گرفته می‌شود',
+ 'Baghdad and Diyarbakir':'بغداد و دیاربکر',
+ 'Ismail defeats Shaybani Khan at Merv and takes Khorasan':'اسماعیل شیبک‌خان را در مرو شکست می‌دهد و خراسان را می‌گیرد',
+ 'After Chaldiran the Ottomans take Diyarbakir':'پس از چالدران عثمانی‌ها دیاربکر را می‌گیرند',
+ 'Suleiman takes Baghdad':'سلیمان بغداد را می‌گیرد',
+ 'Treaty of Istanbul: the north-west to the Ottomans, Khorasan to the Uzbeks':'پیمان استانبول: شمال غرب به عثمانی و خراسان به ازبکان',
+ 'Abbas I recovers Khorasan':'عباس یکم خراسان را بازپس می‌گیرد',
+ 'Abbas I retakes Tabriz, Erivan and Shirvan':'عباس یکم تبریز، ایروان و شروان را پس می‌گیرد',
+ 'Kandahar taken from the Mughals; Hormuz from the Portuguese':'قندهار از گورکانیان و هرمز از پرتغالی‌ها گرفته می‌شود',
+ 'Baghdad retaken':'بغداد پس گرفته می‌شود',
+ 'Baghdad and Kandahar lost':'از دست رفتن بغداد و قندهار',
+ 'Kandahar retaken':'قندهار پس گرفته می‌شود',
+ 'Mirwais Hotak rebels in Kandahar':'میرویس هوتک در قندهار می‌شورد',
+ 'The Abdali Afghans take Herat':'افغان‌های ابدالی هرات را می‌گیرند',
+ 'The Hotakis take Isfahan; Russia and the Ottomans invade':'هوتکیان اصفهان را می‌گیرند؛ روسیه و عثمانی حمله می‌کنند',
+ 'Nader expels the Hotakis from Isfahan':'نادر هوتکیان را از اصفهان بیرون می‌راند',
+ 'Western Iran and Herat recovered; Russia returns Gilan':'غرب ایران و هرات بازپس گرفته می‌شود؛ روسیه گیلان را پس می‌دهد',
+ 'Nader Shah is crowned; the Caucasus recovered by the Treaty of Ganja':'نادرشاه تاج‌گذاری می‌کند؛ قفقاز با پیمان گنجه بازمی‌گردد',
+ 'Kandahar, Kabul and Peshawar':'قندهار، کابل و پیشاور',
+ 'The Mughals cede the lands west of the Indus':'گورکانیان سرزمین‌های غرب سند را واگذار می‌کنند',
+ 'Khiva conquered and Bukhara made a vassal':'خیوه گشوده و بخارا دست‌نشانده می‌شود',
+ 'Oman occupied':'اشغال عمان',
+ 'Nader is assassinated and his empire breaks apart':'نادر کشته می‌شود و شاهنشاهی‌اش از هم می‌پاشد',
+ 'Rival claimants divide Iran after the Afsharids':'مدعیان رقیب ایران را پس از افشاریان میان خود بخش می‌کنند',
+ 'Karim Khan Zand rules most of Iran from Shiraz':'کریم‌خان زند از شیراز بر بیشتر ایران فرمان می‌راند',
+ 'The Zands take Mazandaran':'زندیان مازندران را می‌گیرند',
+ 'The Zands take Basra':'زندیان بصره را می‌گیرند',
+ 'Karim Khan dies; Agha Mohammad Khan Qajar holds the north':'کریم‌خان می‌میرد؛ آقامحمدخان قاجار شمال را در دست دارد',
+ 'The Qajars take Isfahan and the west':'قاجارها اصفهان و غرب را می‌گیرند',
+ 'Kerman falls; the Zand dynasty ends':'کرمان سقوط می‌کند؛ دودمان زند پایان می‌یابد',
+ 'Qajar Iran, with the Caucasus khanates as vassals':'ایران قاجاری، با خان‌نشین‌های قفقاز به عنوان دست‌نشانده',
+ 'Russia annexes eastern Georgia':'روسیه گرجستان شرقی را ضمیمه می‌کند',
+ 'Ganja, Karabakh, Shaki, Shirvan, Baku, Quba and Derbent fall to Russia':'گنجه، قره‌باغ، شکی، شروان، باکو، قبه و دربند به دست روسیه می‌افتند',
+ 'Treaty of Gulistan':'پیمان گلستان',
+ 'Treaty of Turkmenchay: Erivan and Nakhchivan ceded':'پیمان ترکمانچای: ایروان و نخجوان واگذار می‌شوند',
+ 'Ranjit Singh’s Sikhs take Peshawar from the Afghans':'سیک‌های رنجیت سینگ پیشاور را از افغان‌ها می‌گیرند',
+ 'Qajar troops take Herat':'سپاه قاجار هرات را می‌گیرد',
+ 'Treaty of Paris: Iran gives up Herat':'پیمان پاریس: ایران از هرات چشم می‌پوشد',
+ 'Russia takes Samarkand; Bukhara becomes a protectorate':'روسیه سمرقند را می‌گیرد؛ بخارا تحت‌الحمایه می‌شود',
+ 'The Ottoman Empire collapses at the end of the First World War':'فروپاشی عثمانی در پایان جنگ جهانی یکم',
+ 'Imperial State of Iran':'کشور شاهنشاهی ایران',
+ 'Anglo-Soviet occupation':'اشغال ایران به دست بریتانیا و شوروی',
+ 'Soviet-backed governments in Azerbaijan and Mahabad':'حکومت‌های مورد حمایت شوروی در آذربایجان و مهاباد',
+ 'Central government restored':'بازگشت حکومت مرکزی',
+ 'Islamic Republic of Iran':'جمهوری اسلامی ایران',
+ 'Iraq invades Khuzestan':'عراق به خوزستان حمله می‌کند',
+ 'Khorramshahr liberated':'آزادسازی خرمشهر'
+},
+names:{
+ 'Sumerian city-states':'دولت‌شهرهای سومری','Shahr-e Sukhteh (Helmand culture)':'شهر سوخته (تمدن هیرمند)','Susiana':'شوشان','Jiroft culture':'تمدن جیرفت','Elam':'ایلام',
+ 'Oxus civilisation':'تمدن جیحون','Akkadian Empire':'شاهنشاهی اکد','Elam (Shimashki)':'ایلام (شیماشکی)','Third Dynasty of Ur':'دودمان سوم اور','Isin and Larsa':'ایسین و لارسا',
+ 'Babylonia':'بابل','Assyria':'آشور','Lydia':'لیدیه','Urartu':'اورارتو','Egypt (Assyrian vassal)':'مصر (دست‌نشانده آشور)','Media':'ماد','Egypt':'مصر',
+ 'Anshan (Persians)':'انشان (پارس‌ها)','Persis (vassal)':'پارس (دست‌نشانده)','Neo-Babylonian Empire':'شاهنشاهی بابل نو','Median Empire':'شاهنشاهی ماد','Persis (Cyrus)':'پارس (کوروش)',
+ 'Achaemenid Empire':'شاهنشاهی هخامنشی','Macedon (vassal)':'مقدونیه (دست‌نشانده)','Macedon and the Greek League':'مقدونیه و اتحادیه یونانی','Empire of Alexander':'شاهنشاهی اسکندر',
+ 'Achaemenid remnant (Bessus)':'بازمانده هخامنشی (بسوس)','Other satraps':'دیگر ساتراپ‌ها','Antipater (Macedon)':'آنتیپاتر (مقدونیه)','Lysimachus':'لوسیماخوس','Antigonus':'آنتیگونوس',
+ 'Ptolemy':'بطلمیوس','Seleucus':'سلوکوس','Eastern satraps':'ساتراپ‌های شرقی','Cassander':'کاساندر','Seleucid kingdom':'پادشاهی سلوکی','Ptolemaic Egypt':'مصر بطلمیوسی',
+ 'Greco-Bactria':'یونانی-باختری','Parthia':'پارت','Parthian Empire':'شاهنشاهی اشکانی','Vassal kingdoms':'پادشاهی‌های وابسته','Roman Republic':'جمهوری روم','Roman Empire':'امپراتوری روم',
+ 'Arsacid remnants':'بازماندگان اشکانی','Sasanian Empire':'شاهنشاهی ساسانی','Byzantine Empire':'امپراتوری بیزانس','Rashidun Caliphate':'خلافت راشدین','Dabuyids of Tabaristan':'دابویگان طبرستان',
+ 'Dabuyids':'دابویگان','Daylam':'دیلم','Umayyad Caliphate':'خلافت اموی','Abbasid Caliphate':'خلافت عباسی','Khurramites (Babak)':'خرمدینان (بابک)','Tahirids':'طاهریان','Samanids':'سامانیان',
+ 'Saffarids':'صفاریان','Alavids':'علویان','Sajids':'ساجیان','Ziyarids':'زیاریان','Buyids':'آل‌بویه','Banu Ilyas':'بنی الیاس','Qarmatians':'قرمطیان','Ikhshidids':'اخشیدیان','Hamdanids':'حمدانیان',
+ 'Sallarids':'سالاریان','Fatimid Caliphate':'خلافت فاطمی','Ghaznavids':'غزنویان','Rawadids':'روادیان','Shaddadids':'شدادیان','Uqaylids':'عقیلیان','Marwanids':'مروانیان','Karakhanids':'قراخانیان',
+ 'Mamunids (Khwarazm)':'مأمونیان (خوارزم)','Kakuyids':'کاکوییان','Seljuks':'سلجوقیان','Kerman Seljuks':'سلجوقیان کرمان','Seljuk Empire':'شاهنشاهی سلجوقی','Sultanate of Rum':'سلجوقیان روم',
+ 'Karakhanid vassals':'قراخانیان دست‌نشانده','Zengids':'زنگیان','Crusader states':'دولت‌های صلیبی','Qara Khitai':'قراختاییان','Khwarazmshahs':'خوارزمشاهیان','Maliks of Sistan':'ملوک سیستان',
+ 'Seljuks of Iraq':'سلجوقیان عراق','Ildegizids':'ایلدگزیان','Salghurids':'سلغریان','Oghuz Turks':'ترکان اوغوز','Ghurids':'غوریان','Zengids of Mosul':'زنگیان موصل','Ayyubids':'ایوبیان',
+ 'Khwarazmian Empire':'شاهنشاهی خوارزمشاهی','Nizari Ismailis':'اسماعیلیان نزاری','Latin Empire and Nicaea':'امپراتوری لاتین و نیقیه','Salghurids (vassal)':'سلغریان (دست‌نشانده)',
+ 'Mongol Empire':'امپراتوری مغول','Khwarazmian remnants':'بازماندگان خوارزمشاهی','Qutlugh-Khanids (vassal)':'قراختاییان کرمان (دست‌نشانده)','Golden Horde':'اردوی زرین','Chagatai Khanate':'خانات جغتای',
+ 'Mamluk Sultanate':'سلطنت ممالیک','Ilkhanate':'ایلخانی','Sultanate of Rum (vassal)':'سلجوقیان روم (دست‌نشانده)','Ottoman beylik':'بیگ‌نشین عثمانی','Eretnids':'ارتنیان',
+ 'Gilan (local rulers)':'گیلان (فرمانروایان محلی)','Mihrabanids (Sistan)':'مهربانیان (سیستان)','Jalayirids':'جلایریان','Chobanids':'چوپانیان','Injuids':'اینجوییان','Muzaffarids':'آل‌مظفر',
+ 'Kartids':'آل‌کرت','Sarbadars':'سربداران','Togha Temürids':'طغاتیموریان','Hazaraspids':'هزاراسپیان','Ottoman Empire':'امپراتوری عثمانی','Timurids':'تیموریان','Timurid Empire':'شاهنشاهی تیموری',
+ 'Qara Qoyunlu':'قراقویونلوها','Aq Qoyunlu':'آق‌قویونلوها','Timurids of Herat':'تیموریان هرات','Shaybanid Uzbeks':'ازبکان شیبانی','Safavids':'صفویان','Safavid Empire':'شاهنشاهی صفوی',
+ 'Mughal Empire':'امپراتوری گورکانی هند','Uzbek khanates':'خانات ازبک','Ottoman occupation':'اشغال عثمانی','Uzbek occupation':'اشغال ازبکان','Hotaki Afghans':'افغان‌های هوتکی',
+ 'Abdali Afghans':'افغان‌های ابدالی','Safavid remnant (Tahmasp II)':'بازمانده صفوی (تهماسب دوم)','Russian occupation':'اشغال روسیه','Safavid Empire (Nader)':'شاهنشاهی صفوی (نادر)',
+ 'Afsharid Iran':'ایران افشاری','Bukhara (vassal)':'بخارا (دست‌نشانده)','Oman (occupied)':'عمان (اشغال‌شده)','Georgia (Kartli-Kakheti)':'گرجستان (کارتلی-کاختی)','Caucasus khanates':'خان‌نشین‌های قفقاز',
+ 'Afsharid claimants':'مدعیان افشاری','Afsharids (Shahrokh)':'افشاریان (شاهرخ)','Durrani Afghans':'افغان‌های درانی','Zands':'زندیان','Azad Khan':'آزادخان','Qajars':'قاجارها','Zand Iran':'ایران زندی',
+ 'Afghanistan':'افغانستان','Qajar Iran':'ایران قاجاری','Caucasus khanates (vassals)':'خان‌نشین‌های قفقاز (دست‌نشانده)','Lost to Russia':'واگذارشده به روسیه','Iran':'ایران',
+ 'Soviet occupation zone':'منطقه اشغالی شوروی','British occupation zone':'منطقه اشغالی بریتانیا','Azerbaijan People’s Government':'حکومت ملی آذربایجان','Republic of Mahabad':'جمهوری مهاباد','Iraqi-occupied':'اشغال‌شده به دست عراق',
+ 'Hittites':'هیتی‌ها','Arabian nomads':'کوچ‌نشینان عرب','Iranian pastoralists':'دامداران ایرانی','Greek city-states':'دولت‌شهرهای یونانی','Kush':'کوش','Magadha':'مگدهه','Saba':'سبا',
+ 'Maurya Empire':'امپراتوری موریا','Armenia':'ارمنستان','Atropatene':'آتروپاتن','Cappadocia':'کاپادوکیه','Nabataeans':'نبطیان','Bithynia':'بیتینیا','Kingdom of Armenia':'پادشاهی ارمنستان',
+ 'Saka':'سکاها','Indo-Parthians':'هندو-پارت‌ها','Himyar':'حمیر','Khazars':'خزرها','Hejaz':'حجاز','Aksum':'اکسوم','Harsha’s India':'هند هرشه','Karluks':'قارلوق‌ها','Hindu Shahis':'شاهیان هندو',
+ 'Kingdom of Georgia':'پادشاهی گرجستان','Kara-Khanids':'قراخانیان','Kipchaks':'قپچاق‌ها','Delhi Sultanate':'سلطنت دهلی','Central Asian khanates':'خانات آسیای میانه','Khiva':'خیوه',
+ 'Kazakh Khanate':'خانات قزاق','Tsardom of Russia':'تزارنشین روسیه','Oman':'عمان','Russian Empire':'امپراتوری روسیه','Durrani Empire':'امپراتوری درانی','Nejd':'نجد','Sikhs':'سیک‌ها',
+ 'Soviet Union':'اتحاد شوروی','Turkey':'ترکیه','Iraq':'عراق','Pakistan':'پاکستان','Saudi Arabia':'عربستان سعودی','Syria':'سوریه','Kuwait':'کویت','India':'هند','Turkmenistan':'ترکمنستان',
+ 'Azerbaijan':'جمهوری آذربایجان','U.A.E.':'امارات','Uzbekistan':'ازبکستان','Qatar':'قطر','Hittite Empire':'امپراتوری هیتی','Arabs':'عرب‌ها','Scythians':'سکاها','Massagetae':'ماساگت‌ها',
+ 'Macedon':'مقدونیه','Pontus':'پونتوس','Yuezhi':'یوئه‌چی‌ها','Indo-Scythians':'هندو-سکاها','Han China':'چین هان','Western Turkic Khaganate':'خاقانات ترک غربی','Egypt (Ikhshidids)':'مصر (اخشیدیان)',
+ 'Yuan China':'چین یوان','Khanate of Bukhara':'خانات بخارا','Khanate of Kokand':'خانات خوقند','Maratha Empire':'امپراتوری ماراتا','Kazakhstan':'قزاقستان',
+ 'Susa':'شوش','Anshan':'انشان','Pasargadae':'پاسارگاد','Persepolis':'تخت جمشید','Seleucia on the Tigris':'سلوکیه بر دجله','Nisa':'نسا','Istakhr':'استخر','Rey':'ری','Maragheh':'مراغه','Soltaniyeh':'سلطانیه','Ecbatana':'هگمتانه','Babylon':'بابل','Seleucia':'سلوکیه','Antioch':'انطاکیه','Ctesiphon':'تیسفون','Hecatompylos':'صددروازه','Bishapur':'بیشاپور',
+ 'Baghdad':'بغداد','Bukhara':'بخارا','Shiraz':'شیراز','Isfahan':'اصفهان','Nishapur':'نیشابور','Tabriz':'تبریز','Herat':'هرات','Qazvin':'قزوین','Mashhad':'مشهد','Tehran':'تهران',
+ 'Caspian Sea':'دریای خزر','Persian Gulf':'خلیج فارس','Mediterranean':'دریای مدیترانه','Black Sea':'دریای سیاه','Arabian Sea':'دریای عرب','Red Sea':'دریای سرخ','Gulf of Oman':'دریای عمان'
+},
+ui:{
+ capital:'پایتخت',rulers:'فرمانروایان',chapter:(n,t)=>`فصل ${n} از ${t}`,mapFrom:(y,n)=>`نقشه از ${y}: ${n}`,atHeight:'در اوج: ',today:'امروز',bc:'پیش از میلاد',ad:'میلادی',
+ chips:{Territory:'قلمرو',Battle:'نبرد',Monument:'بنای تاریخی',City:'شهر',Event:'رویداد',Route:'راه',Campaign:'لشکرکشی',Crackdown:'سرکوب'},
+ legendHead:'راهنمای نقشه',legend:['قلمرو در تاریخ نمایش‌داده‌شده','نبرد یا فتح','بنای تاریخی','راه یا لشکرکشی','مرزهای امروز ایران','قلمرو از دست رفته'],
+ legendSrc:'مرزها تقریبی‌اند. منابع: ',
+ introEyebrow:'اطلس متحرک · از حدود 3200 پیش از میلاد تا امروز',
+ introP:'پنج هزار سال تاریخ ایران، از ایلام تا جمهوری اسلامی: چهارده فصل از شاهنشاهی‌ها، بناها و جنگ‌ها، با موسیقی زنده در دستگاه‌های ایرانی.',
+ beginMusic:'آغاز با روایت و موسیقی',beginSilent:'کاوش بی‌صدا',
+ introHint:'برای چرخاندن بکشید · برای بزرگ‌نمایی اسکرول کنید · فاصله برای توقف · کلیدهای جهت برای پیمایش · P و K برای پنهان کردن پنل‌ها',
+ noVoice:'این مرورگر صدای فارسی ندارد. متن‌ها فارسی نمایش داده می‌شوند؛ برای روایت فارسی از Microsoft Edge استفاده کنید.',
+ prev:'لحظه پیشین',next:'لحظه بعد',play:'پخش',pause:'توقف',musicOn:'روشن کردن موسیقی',musicOff:'خاموش کردن موسیقی',narrOn:'روشن کردن روایت',narrOff:'خاموش کردن روایت',
+ hidePanel:'پنهان کردن پنل (P)',showPanel:'نمایش پنل (P)',hideKey:'پنهان کردن راهنما (K)',showKey:'نمایش راهنما (K)',timeline:'خط زمان',lang:'English'
+}
+};
+const UI_EN={capital:'Capital',rulers:'Rulers',atHeight:'At its height: ',today:'Today',
+ legendHead:'Map key',legend:['Territory at the date shown','Battle or conquest','Monument','Route or campaign','Borders of Iran today','Territory lost'],
+ legendSrc:'Borders are approximate. Sources: ',introEyebrow:'An animated atlas · c. 3200 BC to today',
+ introP:'Five thousand years of Iran, from Elam to the Islamic Republic: fourteen chapters of empires, monuments and wars, scored live in the Persian modes.',
+ beginMusic:'Begin with narration and music',beginSilent:'Explore in silence',
+ introHint:'Drag to orbit · scroll to zoom · space to pause · arrow keys to step · P and K hide the panels',noVoice:'',
+ prev:'Previous moment',next:'Next moment',play:'Play',pause:'Pause',musicOn:'Turn music on',musicOff:'Turn music off',narrOn:'Turn narration on',narrOff:'Turn narration off',
+ hidePanel:'Hide panel (P)',showPanel:'Show panel (P)',hideKey:'Hide the key (K)',showKey:'Show the key (K)',timeline:'Timeline',lang:'فارسی'};
+let LANG='en';
+{const sys=/^fa/i.test(navigator.language||'')?'fa':'en';let q=null;try{q=localStorage.getItem('iranshahr-lang');}catch(err){}LANG=q==='fa'||q==='en'?q:sys;}
+const isFa=()=>LANG==='fa';
+const L=k=>(isFa()?FA.ui:UI_EN)[k];
+/* Persian digits, with the Persian thousands and decimal separators */
+const faD=t=>String(t).replace(/(\d),(?=\d)/g,'$1٬').replace(/(\d)\.(?=\d)/g,'$1٫').replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+const fyFa=y=>y<0?`${-y} پیش از میلاد`:(y<1000?`${y} میلادی`:`${y}`);
+const fy=y=>isFa()?faD(fyFa(y)):(y<0?`${-y} BC`:(y<1000?`AD ${y}`:`${y}`));
+const tName=n=>isFa()?faD(FA.names[n]||n):n;
+const tNote=n=>isFa()?faD(FA.notes[n]||n):n;
+const tCh=(c,k)=>isFa()?faD(FA.ch[c.i][k]):c[k];
+const tEv=(e,k)=>isFa()&&FA.ev[e.n]?faD(FA.ev[e.n][k==='n'?0:1]):e[k];
 const typeLabel=e=>e.t==='road'?(e.war?'Campaign':'Route'):({battle:'Battle',monument:'Monument',city:'City',event:'Event',crackdown:'Crackdown'})[e.t];
 
 /* ------------------------------------------------------------------ renderer */
@@ -831,10 +1259,15 @@ function startMorph(key){
   U.uB.value=sdfTex[key];TER.shown=key;TER.t=REDUCE?1:0;U.uT.value=TER.t;
 }
 function frameIndex(ci,y){let k=0;CH[ci].frames.forEach((f,i)=>{if(y>=f.y)k=i;});return k;}
+let mapShown=null;
+function mapCaption(){
+  if(!mapShown)return;const[ci,fi]=mapShown,f=CH[ci].frames[fi],n=tNote(f.n);
+  $('#eraMap').textContent=CH[ci].frames.length>1?(isFa()?FA.ui.mapFrom(fy(f.y),n):`Map from ${fy(f.y)}: ${n}`):n;
+}
 function showFrame(ci,fi){
   const key=ci+'_'+fi;if(TER.want===key)return;
   TER.want=key;TER.since=performance.now();if(sdfTex[key])startMorph(key);else sdfRequest(key,true);
-  const f=CH[ci].frames[fi];$('#eraMap').textContent=CH[ci].frames.length>1?`Map from ${fy(f.y)}: ${f.n}`:f.n;
+  mapShown=[ci,fi];mapCaption();
   if(S.ci===ci)refreshLabels();
 }
 function updateTerritory(dt){
@@ -1445,7 +1878,7 @@ function projectLabels(){
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]);
 function refreshLabels(){
   const c=CH[S.ci],list=[];
-  SEAS.forEach(([n,lo,la],i)=>list.push({id:'sea'+i,html:n,pos:W(lo,la,.1),cls:'sea'}));
+  SEAS.forEach(([n,lo,la],i)=>list.push({id:'sea'+i,html:esc(tName(n)),pos:W(lo,la,.1),cls:'sea'}));
   const b=c.beats[S.bi];
   if(b.kind==='intro'){const bb=c.bbox;list.push({id:'era',html:`<b>${c.fa}</b><i>${esc(c.name)}</i>`,pos:W((bb[0]+bb[2])/2,(bb[1]+bb[3])/2,1.2),cls:'era'});}
   const taken=new Set();
@@ -1453,14 +1886,14 @@ function refreshLabels(){
     if(k+1>S.bi)return;
     const now=k+1===S.bi;const key=e.at.join();
     if(!now)return;taken.add(key);
-    list.push({id:'e'+S.ci+'_'+k,html:esc(e.n),pos:W(e.at[0],e.at[1],MON_Y+(e.mon?.62:.85)),cls:'ev t-'+e.t+(now?' now':'')});
+    list.push({id:'e'+S.ci+'_'+k,html:esc(tEv(e,'n')),pos:W(e.at[0],e.at[1],MON_Y+(e.mon?.62:.85)),cls:'ev t-'+e.t+(now?' now':'')});
   });
   const fk=TER.want&&TER.want.split('_').map(Number),fr=fk&&fk[0]===S.ci?CH[S.ci].frames[fk[1]]:null;
   const pw=new Set();
-  if(fr)fr.p.forEach(([n,col,ids,an],k)=>{if(!an)return;pw.add(n.toLowerCase());list.push({id:'pw'+k+n,html:`<em style="color:${col}">${esc(n)}</em>`,pos:W(an[0],an[1],MON_Y+.06),cls:'pw'});});
+  if(fr)fr.p.forEach(([n,col,ids,an],k)=>{if(!an)return;pw.add(n.toLowerCase());list.push({id:'pw'+k+n,html:`<em style="color:${col}">${esc(tName(n))}</em>`,pos:W(an[0],an[1],MON_Y+.06),cls:'pw'});});
   const allPw=CH[S.ci].frames.flatMap(f=>f.p.map(p=>p[0].toLowerCase()));
-  nbList(S.ci).filter(([n,lo,la])=>!(fr&&heldIn(fr,lo,la))).filter(([n])=>!allPw.some(p=>p.includes(n.toLowerCase().replace(/^the /,''))||n.toLowerCase().includes(p))).forEach(([n,lo,la],i)=>list.push({id:'nb'+S.ci+'_'+i,html:esc(n),pos:W(lo,la,MON_Y+.05),cls:'nb'}));
-  c.capitals.forEach(([n,lo,la])=>{if(!taken.has([lo,la].join()))list.push({id:'cap'+n,html:esc(n),pos:W(lo,la,MON_Y+.1),cls:'cap'});});
+  nbList(S.ci).filter(([n,lo,la])=>!(fr&&heldIn(fr,lo,la))).filter(([n])=>!allPw.some(p=>p.includes(n.toLowerCase().replace(/^the /,''))||n.toLowerCase().includes(p))).forEach(([n,lo,la],i)=>list.push({id:'nb'+S.ci+'_'+i,html:esc(tName(n)),pos:W(lo,la,MON_Y+.05),cls:'nb'}));
+  c.capitals.forEach(([n,lo,la])=>{if(!taken.has([lo,la].join()))list.push({id:'cap'+n,html:esc(tName(n)),pos:W(lo,la,MON_Y+.1),cls:'cap'});});
   setLabels(list);
 }
 
@@ -1597,26 +2030,33 @@ function nbList(ci){return NB_DATA[ci]?NB_DATA[ci].map(n=>n.slice(0,3)).concat(N
 const Narrator=(()=>{
   const ok='speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined';
   let on=false,voice=null,busy=false,token=0,lastEnd=0;
-  const pick=()=>{const vs=speechSynthesis.getVoices().filter(v=>/^en/i.test(v.lang));
-    for(const re of[/Natural/i,/Google UK English Male/i,/Daniel/i,/Arthur/i,/Google UK English Female/i,/Google US English/i,/en-GB/i])
+  const PREF={en:[/Natural/i,/Google UK English Male/i,/Daniel/i,/Arthur/i,/Google UK English Female/i,/Google US English/i,/en-GB/i],
+              fa:[/Dilara/i,/Farid/i,/Natural/i,/fa-IR/i]};
+  let listeners=[];
+  const pick=()=>{const vs=speechSynthesis.getVoices().filter(v=>new RegExp('^'+LANG,'i').test(v.lang));
+    for(const re of PREF[LANG])
       {const v=vs.find(v=>re.test(v.name)||re.test(v.lang));if(v)return v;}
     return vs[0]||null;};
-  if(ok){voice=pick();if(speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',()=>{voice=pick();});}
+  const repick=()=>{voice=pick();listeners.forEach(f=>f());};
+  if(ok){voice=pick();if(speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',repick);}
   /* utterances are kept referenced until spoken: Chrome can garbage-collect queued ones and never fire their events */
   let live=[],poll=0;
   const done=my=>{if(my===token&&busy){busy=false;live=[];clearInterval(poll);lastEnd=performance.now();Score.duck(false);}};
   return{
     ok,get on(){return on;},get busy(){return busy;},get lastEnd(){return lastEnd;},
+    /* English always has a fallback voice; Persian needs a real fa voice */
+    get canSpeak(){return ok&&(LANG==='en'||!!voice);},
+    relang(){if(ok)repick();},onVoices(f){listeners.push(f);},
     set(v){on=!!v&&ok;if(!on)this.stop();},
     stop(){token++;clearInterval(poll);if(ok)speechSynthesis.cancel();busy=false;live=[];Score.duck(false);},
     say(text){
       if(!on)return;const my=++token;clearInterval(poll);speechSynthesis.cancel();
-      const parts=text.match(/[^.!?]+[.!?]+["’']?(\s+|$)|[^.!?]+$/g)||[text];
+      const parts=text.match(/[^.!?؟]+[.!?؟]+["’']?(\s+|$)|[^.!?؟]+$/g)||[text];
       busy=true;Score.duck(true);
       /* speaking straight after cancel() can drop the first sentence, so start a moment later */
       setTimeout(()=>{
         if(my!==token)return;
-        live=parts.map((p,i)=>{const u=new SpeechSynthesisUtterance(p.trim());if(voice)u.voice=voice;u.lang=voice?voice.lang:'en-GB';u.rate=.96;u.pitch=.95;
+        live=parts.map((p,i)=>{const u=new SpeechSynthesisUtterance(p.trim());if(voice)u.voice=voice;u.lang=voice?voice.lang:(LANG==='fa'?'fa-IR':'en-GB');u.rate=LANG==='fa'?1:.96;u.pitch=LANG==='fa'?1:.95;
           if(i===parts.length-1)u.onend=()=>done(my);speechSynthesis.speak(u);return u;});
         /* finished only when the engine has been silent for a while; the hard cap covers engines that never report */
         const t0=performance.now(),cap=text.length*220+15000;let quiet=0;
@@ -1631,8 +2071,12 @@ const Narrator=(()=>{
   };
 })();
 const spoken=t=>t.replace(/(\d)–(\d)/g,'$1 to $2').replace(/ – /g,' to ').replace(/–/g,', ').replace(/\bc\. /g,'circa ').replace(/km²/g,'square kilometres').replace(/(\d) m\b/g,'$1 metres');
+/* Persian is spoken from Latin digits, which the voices read reliably */
+const faSpoken=t=>t.replace(/(\d),(?=\d{3})/g,'$1').replace(/ – /g,' تا ');
 function beatSpeech(){
   const c=CH[S.ci],b=c.beats[S.bi];
+  if(isFa()){const C=FA.ch[c.i],E=b.kind==='intro'?null:(FA.ev[b.e.n]||[b.e.n,b.e.x]);
+    return faSpoken(E?`${fyFa(b.e.y)}. ${E[0]}. ${E[1]}`:`${C.name}، ${C.dates}. ${C.blurb}`);}
   if(b.kind==='intro')return spoken(`${c.name}, ${c.dates}. ${c.blurb}`);
   return spoken(`${fy(b.e.y)}. ${b.e.n}. ${b.e.x}`);
 }
@@ -1669,34 +2113,35 @@ const segsEl=$('#segs'),ticksEl=$('#ticks'),headEl=$('#head');
 {
   const w=CH.map(c=>Math.min(22,Math.sqrt(c.end-c.start)));const tot=w.reduce((a,b)=>a+b,0);let acc=0;
   CH.forEach((c,i)=>{c.x0=acc/tot;acc+=w[i];c.x1=acc/tot;});
-  segsEl.innerHTML=CH.map(c=>`<div class="seg" style="flex:${c.x1-c.x0};background:${c.color}"><em>${esc(c.key)}</em></div>`).join('');
+  renderSegs();
   ticksEl.innerHTML=CH.map((c,ci)=>c.events.map(e=>`<i class="t-${e.t}" style="left:${(yearX(ci,e.y)*100).toFixed(2)}%"></i>`).join('')).join('');
 }
+function renderSegs(){segsEl.innerHTML=CH.map(c=>`<div class="seg${c.i===S.ci?' on':''}" style="flex:${c.x1-c.x0};background:${c.color}"><em>${esc(isFa()?FA.ch[c.i].key:c.key)}</em></div>`).join('');}
 function yearX(ci,y){const c=CH[ci];return c.x0+(c.x1-c.x0)*clamp((y-c.start)/(c.end-c.start),0,1);}
 function renderCard(){
   const c=CH[S.ci];
-  $('#eraFa').textContent=c.fa;$('#eraIdx').textContent=`Chapter ${c.i+1} of ${CH.length}`;
-  $('#eraName').textContent=c.name;$('#eraDates').textContent=c.dates;$('#eraCap').textContent=c.cap;$('#eraRulers').textContent=c.rulers;$('#eraBlurb').textContent=c.blurb;
-  $('#eventList').innerHTML=c.events.map((e,k)=>`<li><button class="t-${e.t}" data-b="${k+1}"><span class="ev-y">${fy(e.y)}</span><span class="dot"></span><span>${esc(e.n)}</span></button></li>`).join('');
-  $('#nowName').textContent=c.name;
+  $('#eraFa').textContent=isFa()?c.name:c.fa;$('#eraIdx').textContent=isFa()?faD(FA.ui.chapter(c.i+1,CH.length)):`Chapter ${c.i+1} of ${CH.length}`;
+  $('#eraName').textContent=tCh(c,'name');$('#eraDates').textContent=tCh(c,'dates');$('#eraCap').textContent=tCh(c,'cap');$('#eraRulers').textContent=tCh(c,'rulers');$('#eraBlurb').textContent=tCh(c,'blurb');
+  $('#eventList').innerHTML=c.events.map((e,k)=>`<li><button class="t-${e.t}" data-b="${k+1}"><span class="ev-y">${fy(e.y)}</span><span class="dot"></span><span>${esc(tEv(e,'n'))}</span></button></li>`).join('');
+  $('#nowName').textContent=tCh(c,'name');
   [...segsEl.children].forEach((s,i)=>s.classList.toggle('on',i===S.ci));
-  $('#track').setAttribute('aria-valuenow',S.ci);$('#track').setAttribute('aria-valuetext',c.name);
+  $('#track').setAttribute('aria-valuenow',S.ci);$('#track').setAttribute('aria-valuetext',tCh(c,'name'));
 }
 function renderBeat(){
   const c=CH[S.ci],b=c.beats[S.bi];
   const chip=$('#beatType');
-  if(b.kind==='intro'){chip.textContent='Territory';chip.className='chip t-territory';$('#beatYear').textContent=c.dates;$('#beatTitle').textContent=c.frames[0].n;$('#beatText').textContent=(c.i<=10?'At its height: ':'')+c.extent;}
-  else{const e=b.e,tl=typeLabel(e);chip.textContent=tl;chip.className='chip t-'+tl.toLowerCase();$('#beatYear').textContent=fy(e.y);$('#beatTitle').textContent=e.n;$('#beatText').textContent=e.x;}
+  if(b.kind==='intro'){chip.textContent=isFa()?FA.ui.chips.Territory:'Territory';chip.className='chip t-territory';$('#beatYear').textContent=tCh(c,'dates');$('#beatTitle').textContent=tNote(c.frames[0].n);$('#beatText').textContent=(c.i<=10?L('atHeight'):'')+tCh(c,'extent');}
+  else{const e=b.e,tl=typeLabel(e);chip.textContent=isFa()?FA.ui.chips[tl]:tl;chip.className='chip t-'+tl.toLowerCase();$('#beatYear').textContent=fy(e.y);$('#beatTitle').textContent=tEv(e,'n');$('#beatText').textContent=tEv(e,'x');}
   document.querySelectorAll('#eventList button').forEach(btn=>btn.classList.toggle('on',+btn.dataset.b===S.bi));
 }
 function setPanel(open){
   document.body.classList.toggle('panel-hidden',!open);
-  const b=$('#panelBtn');b.setAttribute('aria-label',open?'Hide panel':'Show panel');b.title=(open?'Hide':'Show')+' panel (P)';
+  const b=$('#panelBtn');b.setAttribute('aria-label',L(open?'hidePanel':'showPanel'));b.title=L(open?'hidePanel':'showPanel');
   try{localStorage.setItem('iranshahr-panel',open?'1':'0');}catch(err){}
   if(S.ci>=0){if(S.phase==='transit'){const tr=S.trans;if(tr&&tr.k<tr.mids.length)frameChange(S.ci,tr.k===0?frameIndex(S.ci,tr.y0):tr.mids[tr.k-1],tr.mids[tr.k]);}else setCamera();}
 }
 $('#panelBtn').onclick=()=>setPanel(!panelOpen());
-function setLegend(open){document.body.classList.toggle('legend-hidden',!open);const b=$('#legendBtn');b.setAttribute('aria-expanded',open);b.title=(open?'Hide':'Show')+' the key (K)';try{localStorage.setItem('iranshahr-legend',open?'1':'0');}catch(err){}}
+function setLegend(open){document.body.classList.toggle('legend-hidden',!open);const b=$('#legendBtn');b.setAttribute('aria-expanded',open);b.title=L(open?'hideKey':'showKey');try{localStorage.setItem('iranshahr-legend',open?'1':'0');}catch(err){}}
 $('#legendBtn').onclick=()=>setLegend(document.body.classList.contains('legend-hidden'));
 try{if(localStorage.getItem('iranshahr-legend')==='0')setLegend(false);}catch(err){}
 try{if(localStorage.getItem('iranshahr-panel')==='0')document.body.classList.add('panel-hidden');}catch(err){}
@@ -1726,7 +2171,7 @@ function goTo(ci,bi,frac=0){
 }
 function step(d){
   let ci=S.ci,bi=S.bi+d;
-  if(bi>=CH[ci].beats.length){if(ci<CH.length-1){ci++;bi=0;}else{bi=CH[ci].beats.length-1;S.playing=false;S.ended=true;S.phase='content';$('#year').textContent='Today';playIcon();return;}}
+  if(bi>=CH[ci].beats.length){if(ci<CH.length-1){ci++;bi=0;}else{bi=CH[ci].beats.length-1;S.playing=false;S.ended=true;S.phase='content';$('#year').textContent=L('today');playIcon();return;}}
   if(bi<0){if(ci>0){ci--;bi=CH[ci].beats.length-1;}else bi=0;}
   goTo(ci,bi);
 }
@@ -1743,7 +2188,7 @@ function nextSegment(){
   if(tr.k<tr.mids.length){
     const f=CH[S.ci].frames[tr.mids[tr.k]];
     frameChange(S.ci,tr.k===0?frameIndex(S.ci,tr.y0):tr.mids[tr.k-1],tr.mids[tr.k]);
-    if(Narrator.on)Narrator.say(spoken(`${fy(f.y)}. ${f.n}.`));
+    if(Narrator.on)Narrator.say(isFa()?faSpoken(`${fyFa(f.y)}. ${FA.notes[f.n]||f.n}.`):spoken(`${fy(f.y)}. ${f.n}.`));
   }
 }
 /* during a territory step the camera leaves any monument and frames the provinces that change hands */
@@ -1800,21 +2245,49 @@ function curYear(){
   }
   return b.y;
 }
-function playIcon(){$('#playIcon').innerHTML=S.playing?'<path d="M3 2h4v12H3zM9 2h4v12H9z"/>':'<path d="M4 2v12l10-6z"/>';$('#play').setAttribute('aria-label',S.playing?'Pause':'Play');}
+function playIcon(){$('#playIcon').innerHTML=S.playing?'<path d="M3 2h4v12H3zM9 2h4v12H9z"/>':'<path d="M4 2v12l10-6z"/>';$('#play').setAttribute('aria-label',L(S.playing?'pause':'play'));}
 function setPlaying(p){const was=S.playing;if(p&&S.ended){goTo(0,0);}S.playing=p;playIcon();if(!p)Narrator.stop();else if(!was&&!Narrator.busy)narrate();}
-function sndIcon(){const on=Score.on;$('#sound').classList.toggle('off',!on);$('#sound').setAttribute('aria-label',on?'Turn music off':'Turn music on');
+function sndIcon(){const on=Score.on;$('#sound').classList.toggle('off',!on);$('#sound').setAttribute('aria-label',L(on?'musicOff':'musicOn'));
   $('#sndIcon').innerHTML=on?'<path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5.5c1 .8 1.5 1.6 1.5 2.5s-.5 1.7-1.5 2.5M12.8 3.5c1.6 1.3 2.4 2.8 2.4 4.5s-.8 3.2-2.4 4.5" stroke="currentColor" stroke-width="1.3" fill="none"/>':'<path d="M2 6h3l4-3.5v11L5 10H2z"/><path d="M11 5l4 6M15 5l-4 6" stroke="currentColor" stroke-width="1.5" fill="none"/>';}
 
 $('#play').onclick=()=>setPlaying(!S.playing);
 $('#prev').onclick=()=>step(-1);
 $('#next').onclick=()=>step(1);
 $('#sound').onclick=()=>{Score.toggle();sndIcon();};
-function narrIcon(){const b=$('#narr');b.classList.toggle('off',!Narrator.on);b.setAttribute('aria-label',Narrator.on?'Turn narration off':'Turn narration on');}
+function narrIcon(){const b=$('#narr');b.classList.toggle('off',!Narrator.on);b.setAttribute('aria-label',L(Narrator.on?'narrOff':'narrOn'));}
 $('#narr').onclick=()=>{Narrator.set(!Narrator.on);narrIcon();if(Narrator.on)narrate();};
-if(!Narrator.ok)$('#narr').hidden=true;
+function narrAvail(){
+  const can=Narrator.canSpeak;$('#narr').hidden=!can;
+  if(!can&&Narrator.on){Narrator.set(false);narrIcon();}
+  $('#voiceNote').textContent=Narrator.ok&&!can?L('noVoice'):'';
+}
+narrAvail();Narrator.onVoices(narrAvail);
+function applyLanguage(){
+  document.body.classList.toggle('lang-fa',isFa());document.body.classList.toggle('lang-en',!isFa());
+  document.documentElement.lang=LANG;
+  document.querySelectorAll('[data-t]').forEach(el=>{const[k,i]=el.dataset.t.split('.');const v=L(k);const t=i==null?v:v[+i];el.textContent=isFa()?faD(t):t;});
+  document.querySelectorAll('[data-a]').forEach(el=>el.setAttribute('aria-label',L(el.dataset.a)));
+  document.querySelectorAll('.lang-pick button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===LANG));
+  const lb=$('#langBtn');lb.textContent=isFa()?'EN':'فا';lb.lang=isFa()?'en':'fa';lb.setAttribute('aria-label',L('lang'));lb.title=L('lang');
+  Narrator.relang();narrAvail();
+  playIcon();sndIcon();narrIcon();
+  {const o=panelOpen(),pb=$('#panelBtn');pb.setAttribute('aria-label',L(o?'hidePanel':'showPanel'));pb.title=L(o?'hidePanel':'showPanel');
+   $('#legendBtn').title=L(document.body.classList.contains('legend-hidden')?'showKey':'hideKey');}
+  renderSegs();
+  if(S.ci>=0){renderCard();renderBeat();mapCaption();refreshLabels();}
+  $('#year').textContent=S.ended?L('today'):fy(S.year);
+}
+function setLanguage(l){
+  if(l===LANG)return;LANG=l;try{localStorage.setItem('iranshahr-lang',l);}catch(err){}
+  applyLanguage();
+  /* retell the current moment in the new language */
+  if(Narrator.on&&Narrator.busy&&S.phase==='content')narrate();
+}
+document.querySelectorAll('.lang-pick button').forEach(b=>b.onclick=()=>setLanguage(b.dataset.lang));
+$('#langBtn').onclick=()=>setLanguage(isFa()?'en':'fa');
 function begin(music){
   document.body.classList.remove('intro');$('#intro').classList.add('gone');
-  if(music){Score.toggle(true);sndIcon();Narrator.set(true);narrIcon();}
+  if(music){Score.toggle(true);sndIcon();Narrator.set(Narrator.canSpeak);narrIcon();}
   goTo(0,0);setPlaying(true);
 }
 $('#beginMusic').onclick=()=>begin(true);
@@ -1854,7 +2327,7 @@ function update(dt){
     else{S.beatT+=dt;if(S.beatT>=beatDur(CH[S.ci].beats[S.bi])&&!(Narrator.on&&(Narrator.busy||performance.now()-Narrator.lastEnd<700)))beginTransit();}
   }
   const y=curYear();
-  if(y!==S.year){S.year=y;$('#year').textContent=S.ended?'Today':fy(y);}
+  if(y!==S.year){S.year=y;$('#year').textContent=S.ended?L('today'):fy(y);}
   headEl.style.left=(yearX(S.ci,S.year)*100).toFixed(3)+'%';
   showFrame(S.ci,frameIndex(S.ci,S.year));
 
@@ -1897,7 +2370,7 @@ addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updat
 document.body.classList.add('intro');
 goTo(2,5);frameBBox(CH[2].bbox,CH[2].az);
 camera.position.copy(camDes.pos).add(new THREE.Vector3(0,14,10));controls.target.copy(camDes.tgt);
-S.year=-500;$('#year').textContent=fy(-500);
+S.year=-500;applyLanguage();
 for(const id in MONS){if(MONS[id].y<=-500)MONS[id].v=.6;}
 evVis.forEach(v=>v.p=1);
 playIcon();sndIcon();
