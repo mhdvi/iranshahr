@@ -3805,19 +3805,42 @@
           "OMAN"
         ],
         "geometry": [
-          "H_3a9865389d9e"
+          "H_f5d552252052"
         ],
         "status": "documented-adjustment",
         "sources": [
           {
-            "id": "H_3a9865389d9e",
+            "id": "H_f5d552252052",
             "record": "supplement:Achaemenid Empire:-404",
             "from": -404,
             "to": -404,
             "name": "Achaemenid Empire",
             "adjustment": {
-              "description": "Align Cyrus’s conquests to the narrative dates: Persis before the Median conquest, Lydia thereafter, and transfer the Babylonian realm at 539 BCE. The baseline decadal snapshot alone omits Babylon at the Cylinder event.",
-              "url": "https://www.iranicaonline.org/articles/cyrus-iii/",
+              "description": "Transfer the reconstructed Egyptian region out of Persian control at the narrated 404 BCE independence, and back at the 343 BCE reconquest. Source intervals straddle both events and cannot determine event-year ownership. Egyptian geography uses the earliest available fourth-century outline (383 BCE); peripheral frontiers remain approximate. Cyrus-era Babylon correction is retained.",
+              "url": "https://www.metmuseum.org/de/essays/egypt-in-the-ptolemaic-period",
+              "method": "Explicit regional reconstruction from cited chronology/geography; generalized inland edges, not surveyed or digitized source frontiers.",
+              "kind": "documented-adjustment"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Egypt",
+        "previousUnits": [],
+        "geometry": [
+          "H_e03b2296de36"
+        ],
+        "status": "documented-adjustment",
+        "sources": [
+          {
+            "id": "H_e03b2296de36",
+            "record": "supplement:Egypt:-404",
+            "from": -404,
+            "to": -404,
+            "name": "Egypt",
+            "adjustment": {
+              "description": "Independent Egypt from 404 until the narrated Persian reconquest in 343 BCE. The earliest available fourth-century Egyptian polygon (dataset interval beginning 383 BCE) supplies approximate regional geography, not a backdated accession of Dynasty 30 or independently verified desert frontiers.",
+              "url": "https://www.metmuseum.org/de/essays/egypt-in-the-ptolemaic-period",
               "method": "Explicit regional reconstruction from cited chronology/geography; generalized inland edges, not surveyed or digitized source frontiers.",
               "kind": "documented-adjustment"
             }
@@ -3908,19 +3931,19 @@
           "OMAN"
         ],
         "geometry": [
-          "H_4ed7757c7470"
+          "H_843d01ccbd3d"
         ],
         "status": "documented-adjustment",
         "sources": [
           {
-            "id": "H_4ed7757c7470",
+            "id": "H_843d01ccbd3d",
             "record": "supplement:Achaemenid Empire:-343",
             "from": -343,
             "to": -343,
             "name": "Achaemenid Empire",
             "adjustment": {
-              "description": "Align Cyrus’s conquests to the narrative dates: Persis before the Median conquest, Lydia thereafter, and transfer the Babylonian realm at 539 BCE. The baseline decadal snapshot alone omits Babylon at the Cylinder event.",
-              "url": "https://www.iranicaonline.org/articles/cyrus-iii/",
+              "description": "Transfer the reconstructed Egyptian region out of Persian control at the narrated 404 BCE independence, and back at the 343 BCE reconquest. Source intervals straddle both events and cannot determine event-year ownership. Egyptian geography uses the earliest available fourth-century outline (383 BCE); peripheral frontiers remain approximate. Cyrus-era Babylon correction is retained.",
+              "url": "https://www.metmuseum.org/de/essays/egypt-in-the-ptolemaic-period",
               "method": "Explicit regional reconstruction from cited chronology/geography; generalized inland edges, not surveyed or digitized source frontiers.",
               "kind": "documented-adjustment"
             }

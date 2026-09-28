@@ -7,7 +7,7 @@ An animated 3D atlas of five thousand years of Iranian history, from Elam (c. 32
 ## Features
 
 - **Fourteen chapters:** Elam, the Medes, the Achaemenids, Alexander and the Seleucids, the Parthians, the Sasanians, the Caliphs and the Iranian Intermezzo, the Seljuks, the Mongols, Ilkhans and Timurids, the Safavids, the Afsharids and Zands, the Qajars, the Pahlavis, and the Islamic Republic.
-- **Historical territories:** 197 dated frames and 1,055 territory entries combine Cliopatria v0.2.0 with cited historical corrections and regional reconstructions. Every scheduled territory has visible geometry; generalized regional cores and cultural regions are distinguished in the evidence. See the [full audit](docs/territory-audit.md), [interactive source report](territory-sources.html), [regional repairs](docs/regional-territories.md), and visual camera comparison (generated locally in docs/map-review.html).
+- **Historical territories:** 197 dated frames and 1,056 territory entries combine Cliopatria v0.2.0 with cited historical corrections and regional reconstructions. Every scheduled territory has visible geometry; generalized regional cores and cultural regions are distinguished in the evidence. See the [full audit](docs/territory-audit.md), [interactive source report](territory-sources.html), [regional repairs](docs/regional-territories.md), and visual camera comparison (generated locally in docs/map-review.html).
 - **3D map:** relief, rivers and lakes (including the pre-1960 Aral Sea), with capitals, events and neighbouring powers labelled.
 - **Monuments:** 3D models of sites such as the Behistun inscription.
 - **Narration and music:** spoken narration with a generative score in the Persian modes. The music quiets while the narrator speaks.
