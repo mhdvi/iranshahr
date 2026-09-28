@@ -1,0 +1,10 @@
+{
+  "model": "gpt-4o-mini-tts",
+  "voice": "onyx",
+  "instructions": "Speak in fluent, native Persian (Farsi) with a standard Tehrani accent. Calm, warm, measured documentary narrator.",
+  "response_format": "mp3",
+  "channels": 1,
+  "bitrate": "48k",
+  "number_normalization": "Persian number words; hashes use the original runtime text, before number expansion",
+  "provenance": "Recovered from the original project's gen_fa.js development script used to create the recordings committed in a1e3a0a."
+}

@@ -1,1 +1,18 @@
+node_modules/
+.work/
+
+# Local agent state and environment secrets
 .claude/
+.env
+.env.*
+!.env.example
+
+# Local tools and documentation
+tools/
+docs/
+tests/
+
+# Local logs and editor/OS files
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,13 @@
+{
+  "name": "iranshahr",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "build:territories": "node tools/build-geography.cjs && node tools/build-territories.cjs && node tools/audit-era-coverage.cjs && node tools/build-territory-report.cjs",
+    "test:browser": "node tools/smoke-territories.cjs"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.63.0",
+    "polygon-clipping": "0.15.7"
+  }
+}

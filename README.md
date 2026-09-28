@@ -7,7 +7,7 @@ An animated 3D atlas of five thousand years of Iranian history, from Elam (c. 32
 ## Features
 
 - **Fourteen chapters:** Elam, the Medes, the Achaemenids, Alexander and the Seleucids, the Parthians, the Sasanians, the Caliphs and the Iranian Intermezzo, the Seljuks, the Mongols, Ilkhans and Timurids, the Safavids, the Afsharids and Zands, the Qajars, the Pahlavis, and the Islamic Republic.
-- **Historical territories:** 89 historical provinces built from Natural Earth admin-1 units, with 170 dated keyframes recording which power held which provinces. Borders morph smoothly between keyframes. Rival and successor states (Assyria, Rome and Byzantium, the Ottomans, the Mughals and others) are drawn too.
+- **Historical territories:** 197 dated frames and 1,055 territory entries combine Cliopatria v0.2.0 with cited historical corrections and regional reconstructions. Every scheduled territory has visible geometry; generalized regional cores and cultural regions are distinguished in the evidence. See the [full audit](docs/territory-audit.md), [interactive source report](territory-sources.html), [regional repairs](docs/regional-territories.md), and visual camera comparison (generated locally in docs/map-review.html).
 - **3D map:** relief, rivers and lakes (including the pre-1960 Aral Sea), with capitals, events and neighbouring powers labelled.
 - **Monuments:** 3D models of sites such as the Behistun inscription.
 - **Narration and music:** spoken narration with a generative score in the Persian modes. The music quiets while the narrator speaks.
@@ -17,6 +17,7 @@ An animated 3D atlas of five thousand years of Iranian history, from Elam (c. 32
 
 | Action | Input |
 | --- | --- |
+| Full territory overview | Expand-corners button beside the language control |
 | Play / pause | <kbd>Space</kbd> or the play button |
 | Previous / next moment | <kbd>←</kbd> / <kbd>→</kbd> |
 | Jump anywhere in time | Click or drag the timeline |
@@ -67,7 +68,16 @@ The app needs a recent desktop or mobile browser with WebGL. English narration u
 
 ## Credits
 
-- Map data: [Natural Earth](https://www.naturalearthdata.com/) (public domain)
+- Historical polygons: [Cliopatria v0.2.0](https://doi.org/10.5281/zenodo.20274630), Bennett et al., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Modified by clipping, coordinate rounding, regrouping and explicitly documented historical corrections; see `data/territory-provenance.json`.
+- Base geography: [Natural Earth](https://www.naturalearthdata.com/) (public domain)
 - 3D rendering: [three.js](https://threejs.org/)
 - Polygon operations: [polygon-clipping](https://github.com/mfogel/polygon-clipping)
 - Fonts: Marcellus, Alegreya Sans, IBM Plex Mono and Vazirmatn, from Google Fonts
+
+## Rebuilding historical territories
+
+Run `npm ci`, then `npm run build:territories`. The bundled `data/historical-source.geojson` subset supports offline rebuilding; the timeline, name mappings, provenance and complete audit are in `data/`. The generated app needs no build step to serve.
+
+Run `npm test` for geometry, chronology and narration checks. Run `npm run test:browser` with Chrome installed (or set `CHROME` to its executable); browser checks need internet for CDN dependencies.
+
+The [cross-era review](docs/era-coverage.md) documents the wider Eurasian map and additional event-date corrections. `data/map-view.json` supplies shared land/territory bounds. The bundled public-domain Natural Earth land subset supports offline rebuilding.

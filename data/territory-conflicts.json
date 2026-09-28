@@ -1,0 +1,67 @@
+{
+  "iraq1980": {
+    "geometry": [
+      [
+        [
+          4758,
+          3210,
+          4784,
+          3178,
+          4768,
+          3141,
+          4767,
+          3099,
+          4801,
+          3099,
+          4801,
+          3046,
+          4814,
+          3044,
+          4817,
+          3039,
+          4823,
+          3040,
+          4831,
+          3053,
+          4846,
+          3051,
+          4858,
+          3064,
+          4855,
+          3088,
+          4838,
+          3112,
+          4833,
+          3135,
+          4810,
+          3148,
+          4810,
+          3170,
+          4803,
+          3195,
+          4808,
+          3225,
+          4790,
+          3245,
+          4782,
+          3247,
+          4773,
+          3233,
+          4775,
+          3222,
+          4771,
+          3217
+        ]
+      ]
+    ],
+    "provenance": {
+      "dataset": "Documented conflict sketch",
+      "Name": "Iraqi occupation, late 1980",
+      "FromYear": 1980,
+      "ToYear": 1980,
+      "classification": "conflict-sketch",
+      "source": "https://csis-website-prod.s3.amazonaws.com/s3fs-public/legacy_files/files/media/csis/pubs/9005lessonsiraniraqii-chap04.pdf",
+      "limitations": "Generalized front, not a day-by-day campaign map. Includes Khorramshahr, excludes Abadan, Ahvaz and Dezful."
+    }
+  }
+}
