@@ -62,10 +62,3 @@ The app needs a recent desktop or mobile browser with WebGL. English narration u
 - Polygon operations: [polygon-clipping](https://github.com/mfogel/polygon-clipping)
 - Fonts: Marcellus, Alegreya Sans, IBM Plex Mono and Vazirmatn, from Google Fonts
 
-## Rebuilding historical territories
-
-Run `npm ci`, then `npm run build:territories`. The bundled `data/historical-source.geojson` subset supports offline rebuilding; the timeline, name mappings, provenance and complete audit are in `data/`. The generated app needs no build step to serve.
-
-Run `npm test` for geometry, chronology and narration checks. Run `npm run test:browser` with Chrome installed (or set `CHROME` to its executable); browser checks need internet for CDN dependencies.
-
-The [cross-era review](docs/era-coverage.md) documents the wider Eurasian map and additional event-date corrections. `data/map-view.json` supplies shared land/territory bounds. The bundled public-domain Natural Earth land subset supports offline rebuilding.
