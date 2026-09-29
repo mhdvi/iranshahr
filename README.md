@@ -41,18 +41,6 @@ npx serve .
 
 Then open <http://localhost:8000/>.
 
-## Deploying to GitHub Pages
-
-The repository is ready for GitHub Pages as it is. `index.html` is the app itself, and `.nojekyll` tells Pages to serve the files as they are, without a Jekyll build.
-
-1. Push the repository to GitHub, including the `audio/` folder.
-2. On GitHub, open **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-4. Choose the `main` branch and the `/ (root)` folder, then click **Save**.
-5. After a minute or two the site is live at <https://mhdvi.github.io/iranshahr/>.
-
-Each push to `main` redeploys the site.
-
 ## Project structure
 
 ```
